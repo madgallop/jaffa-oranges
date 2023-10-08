@@ -1,5 +1,5 @@
 var config = {
-    style: 'mapbox://styles/mapbox/light-v11',
+    style: 'mapbox://styles/mapbox/jaffa-oranges',
     accessToken: 'pk.eyJ1IjoibWFkZ2FsbG9wIiwiYSI6ImNsbmhzbWIzeTE1OHAya25zZnhxeXBveGwifQ.lFJZizdtF3hZNf9QAW7qXA',
     showMarkers: true,
     markerColor: '#3FB1CE',
@@ -10,9 +10,9 @@ var config = {
     theme: 'dark',
     use3dTerrain: false, //set true for enabling 3D maps.
     auto: false,
-    title: 'The Title Text of this Story',
-    subtitle: 'A descriptive and interesting subtitle to draw in the reader',
-    byline: 'By a Digital Storyteller',
+    title: 'Jaffa Oranges',
+    subtitle: "Agriculture, dispossession, and the shifting narrative of Yaffa's orange groves",
+    byline: 'By Madeleine Gallop',
     footer: 'Source: source citations, etc. <br> Created using <a href="https://github.com/mapbox/storytelling" target="_blank">Mapbox Storytelling</a> template.',
     chapters: [
         {
