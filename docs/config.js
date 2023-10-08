@@ -1,5 +1,5 @@
 var config = {
-    style: 'mapbox://styles/mapbox/jaffa-oranges',
+    style: 'mapbox://styles/madgallop/clnhttasz080501p9dvfih2nl',
     accessToken: 'pk.eyJ1IjoibWFkZ2FsbG9wIiwiYSI6ImNsbmhzbWIzeTE1OHAya25zZnhxeXBveGwifQ.lFJZizdtF3hZNf9QAW7qXA',
     showMarkers: true,
     markerColor: '#3FB1CE',
