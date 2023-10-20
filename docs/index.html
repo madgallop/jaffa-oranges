@@ -327,6 +327,16 @@ map.on("load", function() {
                 'sky-atmosphere-sun-intensity': 15
             }
         });
+
+        map.addLayer({
+            'id': 'hillshading',
+            'source': 'dem',
+            'type': 'hillshade'
+            },
+            // Insert below land-structure-polygon layer,
+            // where hillshading sits in the Mapbox Streets style.
+            'land-structure-polygon'
+        );
     };
 
     // As the map moves, grab and update bounds in inset map.
