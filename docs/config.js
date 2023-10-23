@@ -1,6 +1,6 @@
 var config = {
-    style: 'mapbox://styles/madgallop/clnhttasz080501p9dvfih2nl',
-    accessToken: 'pk.eyJ1IjoibWFkZ2FsbG9wIiwiYSI6ImNsbmhzbWIzeTE1OHAya25zZnhxeXBveGwifQ.lFJZizdtF3hZNf9QAW7qXA',
+    style: 'mapbox://styles/madgallop/clnz2tn5q009o01qpginjcvyx',
+    accessToken: 'pk.eyJ1IjoibWFkZ2FsbG9wIiwiYSI6ImNsbmhzYzVnajE4eWsybm51bG43bjhuZWUifQ.PAvoy0phwrKGWDEBf75VSA',
     showMarkers: true,
     markerColor: '#3FB1CE',
     //projection: 'equirectangular',
@@ -23,9 +23,9 @@ var config = {
             image: './path/to/image/source.png',
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             location: {
-                center: [34.75030, 32.04572],
-                zoom: 8.5,
-                pitch: 60,
+                center: [34.75937, 32.06252],
+                zoom: 12.44,
+                pitch: 0.00,
                 bearing: 0
             },
             mapAnimation: 'flyTo',
@@ -53,10 +53,10 @@ var config = {
             image: './path/to/image/source.png',
             description: 'Copy these sections to add to your story.',
             location: {
-                center: [34.75030, 32.04572],
-                zoom: 8.5,
+                center: [34.75937, 32.06252],
+                zoom: 12.44,
                 pitch: 60,
-                bearing: -43.2,
+                bearing: 0.00,
                 // flyTo additional controls-
                 // These options control the flight curve, making it move
                 // slowly and zoom out almost completely before starting
@@ -78,8 +78,8 @@ var config = {
             image: './path/to/image/source.png',
             description: 'Copy these sections to add to your story.',
             location: {
-                center: [34.75030, 32.04572],
-                zoom: 12.52,
+                center: [34.75937, 32.06252],
+                zoom: 12.44,
                 pitch: 0,
                 bearing: 0.00
             },
@@ -97,8 +97,8 @@ var config = {
             image: './path/to/image/source.png',
             description: 'Copy these sections to add to your story.',
             location: {
-                center: [34.75030, 32.04572],
-                zoom: 4,
+                center: [34.75937, 32.06252],
+                zoom: 12.44,
                 pitch: 0,
                 bearing: 0
             },
