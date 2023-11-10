@@ -386,10 +386,22 @@ map.on("load", function() {
             }
         }
 
+        function updateTimeSliderLabel(chapterIndex) {
+            const sliderLabel = document.getElementById('active-year');
+            if (chapterIndex === 0) {
+                sliderLabel.innerText = 'Palestinian Era';
+            } else if (chapterIndex === 1) {
+                sliderLabel.innerText = 'Collaboration Era';
+            } else if (chapterIndex === 2) {
+                sliderLabel.innerText = 'Israeli Era';
+            }
+        }
+
         // Create a function to activate a specific chapter by index
         function activateChapter(chapterIndex) {
             // Use scrollama to scroll to the desired chapter
             scroller.scrollTo(chapterIndex);
+            updateTimeSliderLabel(chapterIndex);
         }
     };
 
