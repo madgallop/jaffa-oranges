@@ -33,7 +33,7 @@ var config = {
             callback: '',
             onChapterEnter: [
                 {
-                    layer: 'grove-data',
+                    layer: 'jafffa-orange-groves',
                     //filter: 
                     opacity: [
                         "match",
@@ -51,7 +51,7 @@ var config = {
             ],
             onChapterExit: [
                 {
-                    layer: 'grove-data',
+                    layer: 'jafffa-orange-groves',
                     opacity: 0
                 }
             ]
@@ -80,7 +80,7 @@ var config = {
             callback: '',
             onChapterEnter: [
                 {
-                    layer: 'grove-data',
+                    layer: 'jafffa-orange-groves',
                     //filter:                  
                     opacity: [
                         "match",
@@ -98,7 +98,7 @@ var config = {
             ],
             onChapterExit: [
                 {
-                    layer: 'grove-data',
+                    layer: 'jafffa-orange-groves',
                     opacity: 0
                 }
             ]
@@ -121,7 +121,7 @@ var config = {
             callback: '',
             onChapterEnter: [
                 {
-                    layer: 'grove-data',
+                    layer: 'jafffa-orange-groves',
                     //filter:                  
                     opacity: [
                         "match",
@@ -139,7 +139,7 @@ var config = {
             ],
             onChapterExit: [
                 {
-                    layer: 'grove-data',
+                    layer: 'jafffa-orange-groves',
                     opacity: 0
                 }
             ]
