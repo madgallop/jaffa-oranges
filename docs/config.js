@@ -34,7 +34,8 @@ var config = {
             onChapterEnter: [
                 {
                     layer: 'grove-data',
-                    filter: [
+                    //filter: 
+                    opacity: [
                         "match",
                         ["get", "year"],
                         ["1918"],
@@ -45,7 +46,6 @@ var config = {
                         0,
                         0
                     ],
-                    opacity: 1,
                     //duration: 5000,
                 }
             ],
@@ -81,7 +81,8 @@ var config = {
             onChapterEnter: [
                 {
                     layer: 'grove-data',
-                    filter: [
+                    //filter:                  
+                    opacity: [
                         "match",
                         ["get", "year"],
                         ["1918"],
@@ -91,7 +92,7 @@ var config = {
                         ["1958"],
                         0,
                         0
-                    ],                    opacity: 1,
+                    ],
                     //duration: 5000,
                 }
             ],
@@ -121,7 +122,8 @@ var config = {
             onChapterEnter: [
                 {
                     layer: 'grove-data',
-                    filter: [
+                    //filter:                  
+                    opacity: [
                         "match",
                         ["get", "year"],
                         ["1918"],
@@ -131,7 +133,7 @@ var config = {
                         ["1958"],
                         1,
                         0
-                    ],                    opacity: 1,
+                    ],
                     //duration: 5000,
                 }
             ],
