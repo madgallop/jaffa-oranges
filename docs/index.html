@@ -145,6 +145,10 @@
 <div id="story"></div>
 <div id='console'>
     <h1>Timeline</h1>
+    <div class='session' id='sliderbar'>
+        <h2>Year: <label id='active-hour'>1918</label></h2>
+        <input id='slider' class='row' type='range' min='0' max='2' step='1' value='1918' />
+    </div>
 </div>
   
 
@@ -355,8 +359,18 @@ map.on("load", function() {
             source: {
                 type: 'geojson',
                 data: 'madgallop.clospbg2f0ucb1nmujancrb8k-9wfx3'
-            }
+            },
+            'filter': ['==', ['number', ['get', 'year']], 1918]
         })
+
+        document.getElementById('slider').addEventListener('input', (event) => {
+            const year = parseInt(event.target.value);
+            // update the map
+            map.setFilter('groves', ['==', ['number', ['get', 'year']], year]);
+
+            // update text in the UI
+            document.getElementById('active-year').innerText = year;
+            });
     };
 
     // As the map moves, grab and update bounds in inset map.
