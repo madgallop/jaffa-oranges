@@ -404,20 +404,6 @@ map.on("load", function() {
             });
         }
 
-        // Create a function to change the chapter based on the selected year
-        function changeChapterBasedOnYear(selectedYear) {
-            if (selectedYear === 1918) {
-                // Activate Chapter 1
-                activateChapter(0);
-            } else if (selectedYear === 1943) {
-                // Activate Chapter 2
-                activateChapter(1);
-            } else if (selectedYear === 1958) {
-                // Activate Chapter 3
-                activateChapter(2);
-            }
-        }
-
         function updateTimeSliderLabel(chapterIndex) {
             const sliderLabel = document.getElementById('active-year');
             if (chapterIndex === 0) {
@@ -436,6 +422,19 @@ map.on("load", function() {
             updateTimeSliderLabel(chapterIndex);
         }
     };
+        // Create a function to change the chapter based on the selected year
+        function changeChapterBasedOnYear(selectedYear) {
+            if (selectedYear === 1918) {
+                // Activate Chapter 1
+                activateChapter(0);
+            } else if (selectedYear === 1943) {
+                // Activate Chapter 2
+                activateChapter(1);
+            } else if (selectedYear === 1958) {
+                // Activate Chapter 3
+                activateChapter(2);
+            }
+        }
 
     // As the map moves, grab and update bounds in inset map.
     if (config.inset) {
