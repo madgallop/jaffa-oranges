@@ -25,13 +25,16 @@
             position: fixed;
         }
         #console {
-            position: fixed;
+            position: absolute;
             bottom: 0;
             left: 0;
-            width: 100%;
+            width: 240px;
             padding: 10px 20px;
-            background-color: white;
+            background-color: transparent;
             z-index: 2; /* Place it above the map */
+        }
+        #sliderbar {
+            text-align: center; /* Center the slider within the console */
         }
         #mapInset {
             bottom:50px;
@@ -146,7 +149,6 @@
 <div id="mapInset"></div>
 <div id="story"></div>
 <div id='console'>
-    <h1>Timeline</h1>
     <div class='session' id='sliderbar'>
         <h2>Year: <label id='active-year'>1918</label></h2>
         <input id='slider' class='row' type='range' min='1918' max='1958' step='1' value='1918' />
