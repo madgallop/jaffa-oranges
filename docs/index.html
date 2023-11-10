@@ -374,78 +374,78 @@ map.on("load", function() {
         );
     };
 
-    map.addSource('jafffa-orange-groves', {
-        type: 'fill',
-        // Use any Mapbox-hosted tileset using its tileset id.
-        // Learn more about where to find a tileset id:
-        // https://docs.mapbox.com/help/glossary/tileset-id/
-        url: 'madgallop.clospbg2f0ucb1nmujancrb8k-9wfx3'
-        });
-    map.addLayer({
-            "id": "grove-data",
-            "type": "fill",
-            "paint": {
-                'fill-color': '#0080ff', // blue color fill
-                'fill-opacity': 0.5
-            },
-            "layout": {},
-            "source": "jafffa-orange-groves",
-            //"source-layer": "jafffa_orange_groves",
-            'filter': ['==', ['number', ['get', 'year']], 1918]
-        },
-        'road-label-simple');
+    // map.addSource('jafffa-orange-groves', {
+    //     type: 'fill',
+    //     // Use any Mapbox-hosted tileset using its tileset id.
+    //     // Learn more about where to find a tileset id:
+    //     // https://docs.mapbox.com/help/glossary/tileset-id/
+    //     url: 'madgallop.clospbg2f0ucb1nmujancrb8k-9wfx3'
+    //     });
+    // map.addLayer({
+    //         "id": "grove-data",
+    //         "type": "fill",
+    //         "paint": {
+    //             'fill-color': '#0080ff', // blue color fill
+    //             'fill-opacity': 0.5
+    //         },
+    //         "layout": {},
+    //         "source": "jafffa-orange-groves",
+    //         //"source-layer": "jafffa_orange_groves",
+    //         'filter': ['==', ['number', ['get', 'year']], 1918]
+    //     },
+    //     'road-label-simple');
 
-    function updateTimelineMarkers(selectedYear) {
-        const markers = document.querySelectorAll('.marker');
-        const years = [1918, 1943, 1958];
-        markers.forEach((marker, index) => {
-            const position = (years[index] - 1918) / (1958 - 1918) * 100;
-            marker.style.left = `${position}%`;
-            if (selectedYear === years[index]) {
-                marker.style.backgroundColor = '#ff0000'; // Change marker color for the selected year
-            } else {
-                marker.style.backgroundColor = '#0071bc'; // Reset marker color for other years
-            }
-        });
-    }
+    // function updateTimelineMarkers(selectedYear) {
+    //     const markers = document.querySelectorAll('.marker');
+    //     const years = [1918, 1943, 1958];
+    //     markers.forEach((marker, index) => {
+    //         const position = (years[index] - 1918) / (1958 - 1918) * 100;
+    //         marker.style.left = `${position}%`;
+    //         if (selectedYear === years[index]) {
+    //             marker.style.backgroundColor = '#ff0000'; // Change marker color for the selected year
+    //         } else {
+    //             marker.style.backgroundColor = '#0071bc'; // Reset marker color for other years
+    //         }
+    //     });
+    // }
 
-    function updateTimeSliderLabel(chapterIndex) {
-        const sliderLabel = document.getElementById('active-year');
-        if (chapterIndex === 0) {
-            sliderLabel.innerText = 'Palestinian Era';
-        } else if (chapterIndex === 1) {
-            sliderLabel.innerText = 'Collaboration Era';
-        } else if (chapterIndex === 2) {
-            sliderLabel.innerText = 'Israeli Era';
-        }
-    }
+    // function updateTimeSliderLabel(chapterIndex) {
+    //     const sliderLabel = document.getElementById('active-year');
+    //     if (chapterIndex === 0) {
+    //         sliderLabel.innerText = 'Palestinian Era';
+    //     } else if (chapterIndex === 1) {
+    //         sliderLabel.innerText = 'Collaboration Era';
+    //     } else if (chapterIndex === 2) {
+    //         sliderLabel.innerText = 'Israeli Era';
+    //     }
+    // }
 
-    // Create a function to activate a specific chapter by index
-    function activateChapter(chapterIndex) {
-        // Use scrollama to scroll to the desired chapter
-        scroller.scrollTo(chapterIndex);
-        updateTimeSliderLabel(chapterIndex);
-    }
-    // Create a function to change the chapter based on the selected year
-    function changeChapterBasedOnYear(selectedYear) {
-        if (selectedYear === 1918) {
-            // Activate Chapter 1
-            activateChapter(0);
-        } else if (selectedYear === 1943) {
-            // Activate Chapter 2
-            activateChapter(1);
-        } else if (selectedYear === 1958) {
-            // Activate Chapter 3
-            activateChapter(2);
-        }
-    }
+    // // Create a function to activate a specific chapter by index
+    // function activateChapter(chapterIndex) {
+    //     // Use scrollama to scroll to the desired chapter
+    //     scroller.scrollTo(chapterIndex);
+    //     updateTimeSliderLabel(chapterIndex);
+    // }
+    // // Create a function to change the chapter based on the selected year
+    // function changeChapterBasedOnYear(selectedYear) {
+    //     if (selectedYear === 1918) {
+    //         // Activate Chapter 1
+    //         activateChapter(0);
+    //     } else if (selectedYear === 1943) {
+    //         // Activate Chapter 2
+    //         activateChapter(1);
+    //     } else if (selectedYear === 1958) {
+    //         // Activate Chapter 3
+    //         activateChapter(2);
+    //     }
+    // }
 
-    document.getElementById('slider').addEventListener('input', (event) => {
-        const selectedYear = parseInt(event.target.value);
-        updateTimelineMarkers(selectedYear);
-        // Call a function to change the chapter based on the selected year
-        changeChapterBasedOnYear(selectedYear);
-    });
+    // document.getElementById('slider').addEventListener('input', (event) => {
+    //     const selectedYear = parseInt(event.target.value);
+    //     updateTimelineMarkers(selectedYear);
+    //     // Call a function to change the chapter based on the selected year
+    //     changeChapterBasedOnYear(selectedYear);
+    // });
 
     // As the map moves, grab and update bounds in inset map.
     if (config.inset) {
