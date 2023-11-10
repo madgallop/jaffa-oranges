@@ -374,7 +374,7 @@ map.on("load", function() {
         );
     };
     map.addSource('jafffa-orange-groves', {
-        type: 'vector',
+        type: 'mixed',
         // Use any Mapbox-hosted tileset using its tileset id.
         // Learn more about where to find a tileset id:
         // https://docs.mapbox.com/help/glossary/tileset-id/
@@ -384,11 +384,12 @@ map.on("load", function() {
             "id": "grove-data",
             "type": "fill",
             "paint": {
-                'fill-color': '#ff69b4'
+                'fill-color': '#0080ff', // blue color fill
+                'fill-opacity': 0.5
             },
             "layout": {},
             "source": "jafffa-orange-groves",
-            "source-layer": "jafffa_orange_groves",
+            //"source-layer": "jafffa_orange_groves",
             'filter': ['==', ['number', ['get', 'year']], 1918]
         },
         'road-label-simple');
