@@ -33,7 +33,7 @@ var config = {
             callback: '',
             onChapterEnter: [
                 {
-                    layer: 'jafffa-orange-groves',
+                    layer: 'grove-data',
                     opacity: 1,
                     duration: 5000,
                     filter: ['==', ['number', ['get', 'year']], 1918] // Filter for the year 1918
@@ -41,7 +41,7 @@ var config = {
             ],
             onChapterExit: [
                 {
-                    layer: 'jafffa-orange-groves',
+                    layer: 'grove-data',
                     opacity: 0
                 }
             ]
@@ -70,7 +70,7 @@ var config = {
             callback: '',
             onChapterEnter: [
                 {
-                    layer: 'jafffa-orange-groves',
+                    layer: 'grove-data',
                     opacity: 1,
                     duration: 5000,
                     filter: ['==', ['number', ['get', 'year']], 1943] // Filter for the year 1918
@@ -78,7 +78,7 @@ var config = {
             ],
             onChapterExit: [
                 {
-                    layer: 'jafffa-orange-groves',
+                    layer: 'grove-data',
                     opacity: 0
                 }
             ]
@@ -101,7 +101,7 @@ var config = {
             callback: '',
             onChapterEnter: [
                 {
-                    layer: 'jafffa-orange-groves',
+                    layer: 'grove-data',
                     opacity: 1,
                     duration: 5000,
                     filter: ['==', ['number', ['get', 'year']], 1958] // Filter for the year 1918
@@ -109,7 +109,7 @@ var config = {
             ],
             onChapterExit: [
                 {
-                    layer: 'jafffa-orange-groves',
+                    layer: 'grove-data',
                     opacity: 0
                 }
             ]
