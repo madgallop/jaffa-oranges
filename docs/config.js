@@ -50,10 +50,10 @@ var config = {
                 }
             ],
             onChapterExit: [
-                {
-                    layer: 'jafffa-orange-groves',
-                    opacity: 0
-                }
+                // {
+                //     layer: 'jafffa-orange-groves',
+                //     opacity: 0
+                // }
             ]
         },
         {
@@ -97,10 +97,10 @@ var config = {
                 }
             ],
             onChapterExit: [
-                {
-                    layer: 'jafffa-orange-groves',
-                    opacity: 0
-                }
+                // {
+                //     layer: 'jafffa-orange-groves',
+                //     opacity: 0
+                // }
             ]
         },
         {
@@ -138,10 +138,10 @@ var config = {
                 }
             ],
             onChapterExit: [
-                {
-                    layer: 'jafffa-orange-groves',
-                    opacity: 0
-                }
+                // {
+                //     layer: 'jafffa-orange-groves',
+                //     opacity: 0
+                // }
             ]
         },
         {
