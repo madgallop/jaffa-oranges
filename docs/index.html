@@ -368,7 +368,7 @@ map.on("load", function() {
         document.getElementById('slider').addEventListener('input', (event) => {
             const year = parseInt(event.target.value);
             // update the map
-            map.setFilter('groves', ['==', ['number', ['get', 'year']], year]);
+            map.setFilter('jafffa-orange-groves', ['==', ['number', ['get', 'year']], year]);
 
             // update text in the UI
             document.getElementById('active-year').innerText = year;
