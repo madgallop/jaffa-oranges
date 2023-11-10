@@ -34,9 +34,9 @@ var config = {
             onChapterEnter: [
                 {
                     layer: 'grove-data',
+                    filter: ['==', ['number', ['get', 'year']], 1918], // Filter for the year 1918
                     opacity: 1,
-                    duration: 5000,
-                    filter: ['==', ['number', ['get', 'year']], 1918] // Filter for the year 1918
+                    //duration: 5000,
                 }
             ],
             onChapterExit: [
@@ -71,9 +71,9 @@ var config = {
             onChapterEnter: [
                 {
                     layer: 'grove-data',
+                    filter: ['==', ['number', ['get', 'year']], 1943], // Filter for the year 1918
                     opacity: 1,
-                    duration: 5000,
-                    filter: ['==', ['number', ['get', 'year']], 1943] // Filter for the year 1918
+                    //duration: 5000,
                 }
             ],
             onChapterExit: [
@@ -102,9 +102,9 @@ var config = {
             onChapterEnter: [
                 {
                     layer: 'grove-data',
+                    filter: ['==', ['number', ['get', 'year']], 1958], // Filter for the year 1918
                     opacity: 1,
-                    duration: 5000,
-                    filter: ['==', ['number', ['get', 'year']], 1958] // Filter for the year 1918
+                    //duration: 5000,
                 }
             ],
             onChapterExit: [
