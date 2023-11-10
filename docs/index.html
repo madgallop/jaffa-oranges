@@ -34,6 +34,21 @@
             background-color: transparent;
             z-index: 2; /* Place it above the map */
         }
+        .timeline {
+            position: relative;
+            width: 100%;
+            height: 10px;
+            background-color: #ccc;
+        }
+        .marker {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #0071bc;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
         #mapInset {
             bottom:50px;
             right:30px;
@@ -147,6 +162,11 @@
 <div id="sliderbar">
     <h2>Year: <label id="active-year">1918</label></h2>
     <input id="slider" class="row" type="range" min="1918" max="1958" step="1" value="1918" />
+    <div class="timeline">
+        <div class="marker" style="left: 0;"></div>
+        <div class="marker" style="left: 50%;"></div>
+        <div class="marker" style="left: 100%;"></div>
+    </div>
 </div>
 <div id="mapInset"></div>
 <div id="story"></div>
@@ -365,10 +385,24 @@ map.on("load", function() {
 
         document.getElementById('slider').addEventListener('input', (event) => {
             const selectedYear = parseInt(event.target.value);
-
+            updateTimelineMarkers(selectedYear);
             // Call a function to change the chapter based on the selected year
             changeChapterBasedOnYear(selectedYear);
         });
+
+        function updateTimelineMarkers(selectedYear) {
+            const markers = document.querySelectorAll('.marker');
+            const years = [1918, 1943, 1958];
+            markers.forEach((marker, index) => {
+                const position = (years[index] - 1918) / (1958 - 1918) * 100;
+                marker.style.left = `${position}%`;
+                if (selectedYear === years[index]) {
+                    marker.style.backgroundColor = '#ff0000'; // Change marker color for the selected year
+                } else {
+                    marker.style.backgroundColor = '#0071bc'; // Reset marker color for other years
+                }
+            });
+        }
 
         // Create a function to change the chapter based on the selected year
         function changeChapterBasedOnYear(selectedYear) {
