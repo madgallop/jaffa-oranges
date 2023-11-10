@@ -373,15 +373,25 @@ map.on("load", function() {
             'land-structure-polygon'
         );
     };
+    map.addSource('jafffa-orange-groves', {
+        type: 'vector',
+        // Use any Mapbox-hosted tileset using its tileset id.
+        // Learn more about where to find a tileset id:
+        // https://docs.mapbox.com/help/glossary/tileset-id/
+        url: 'madgallop.clospbg2f0ucb1nmujancrb8k-9wfx3'
+        });
     map.addLayer({
-            "id": "jafffa-orange-groves",
+            "id": "grove-data",
             "type": "fill",
-            "paint": {},
+            "paint": {
+                'fill-color': '#ff69b4'
+            },
             "layout": {},
-            "source": "composite",
+            "source": "jafffa-orange-groves",
             "source-layer": "jafffa_orange_groves",
             'filter': ['==', ['number', ['get', 'year']], 1918]
-        })
+        },
+        'road-label-simple');
 
     function updateTimelineMarkers(selectedYear) {
         const markers = document.querySelectorAll('.marker');
@@ -427,7 +437,7 @@ map.on("load", function() {
             activateChapter(2);
         }
     }
-    
+
     document.getElementById('slider').addEventListener('input', (event) => {
         const selectedYear = parseInt(event.target.value);
         updateTimelineMarkers(selectedYear);
