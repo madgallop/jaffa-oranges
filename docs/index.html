@@ -366,13 +366,31 @@ map.on("load", function() {
         })
 
         document.getElementById('slider').addEventListener('input', (event) => {
-            const year = parseInt(event.target.value);
-            // update the map
-            map.setFilter('jafffa-orange-groves', ['==', ['number', ['get', 'year']], year]);
+            const selectedYear = parseInt(event.target.value);
 
-            // update text in the UI
-            document.getElementById('active-year').innerText = year;
-            });
+            // Call a function to change the chapter based on the selected year
+            changeChapterBasedOnYear(selectedYear);
+        });
+
+        // Create a function to change the chapter based on the selected year
+        function changeChapterBasedOnYear(selectedYear) {
+            if (selectedYear === 1918) {
+                // Activate Chapter 1
+                activateChapter(0);
+            } else if (selectedYear === 1943) {
+                // Activate Chapter 2
+                activateChapter(1);
+            } else if (selectedYear === 1958) {
+                // Activate Chapter 3
+                activateChapter(2);
+            }
+        }
+
+        // Create a function to activate a specific chapter by index
+        function activateChapter(chapterIndex) {
+            // Use scrollama to scroll to the desired chapter
+            scroller.scrollTo(chapterIndex);
+        }
     };
 
     // As the map moves, grab and update bounds in inset map.

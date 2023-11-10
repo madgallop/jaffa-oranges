@@ -19,7 +19,7 @@ var config = {
             id: 'slug-style-id',
             alignment: 'left',
             hidden: true,
-            //title: 'Display Title',
+            title: 'Palestinian Era',
             //image: './path/to/image/source.png',
             //description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             location: {
@@ -32,24 +32,25 @@ var config = {
             rotateAnimation: false,
             callback: '',
             onChapterEnter: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 1,
-                //     duration: 5000
-                // }
+                {
+                    layer: 'jafffa-orange-groves',
+                    opacity: 1,
+                    duration: 5000,
+                    filter: ['==', ['number', ['get', 'year']], 1918] // Filter for the year 1918
+                }
             ],
             onChapterExit: [
-                // {
-                //     layer: 'layer-name',
-                //     opacity: 0
-                // }
+                {
+                    layer: 'jafffa-orange-groves',
+                    opacity: 0
+                }
             ]
         },
         {
             id: 'second-identifier',
             alignment: 'right',
             hidden: true,
-            //title: 'Second Title',
+            title: 'Collaboration period',
             //image: './path/to/image/source.png',
             //description: 'Copy these sections to add to your story.',
             location: {
@@ -67,14 +68,26 @@ var config = {
             mapAnimation: 'flyTo',
             rotateAnimation: false,
             callback: '',
-            onChapterEnter: [],
-            onChapterExit: []
+            onChapterEnter: [
+                {
+                    layer: 'jafffa-orange-groves',
+                    opacity: 1,
+                    duration: 5000,
+                    filter: ['==', ['number', ['get', 'year']], 1943] // Filter for the year 1918
+                }
+            ],
+            onChapterExit: [
+                {
+                    layer: 'jafffa-orange-groves',
+                    opacity: 0
+                }
+            ]
         },
         {
             id: 'third-identifier',
             alignment: 'left',
             hidden: true,
-            //title: 'Third Title',
+            title: 'Israeli Era',
             //image: './path/to/image/source.png',
             //description: 'Copy these sections to add to your story.',
             location: {
@@ -86,14 +99,26 @@ var config = {
             mapAnimation: 'flyTo',
             rotateAnimation: false,
             callback: '',
-            onChapterEnter: [],
-            onChapterExit: []
+            onChapterEnter: [
+                {
+                    layer: 'jafffa-orange-groves',
+                    opacity: 1,
+                    duration: 5000,
+                    filter: ['==', ['number', ['get', 'year']], 1958] // Filter for the year 1918
+                }
+            ],
+            onChapterExit: [
+                {
+                    layer: 'jafffa-orange-groves',
+                    opacity: 0
+                }
+            ]
         },
         {
             id: 'fourth-chapter',
             alignment: 'fully',
             hidden: true,
-            //title: 'Third Title',
+            title: 'Destruction',
             //image: './path/to/image/source.png',
             //description: 'Copy these sections to add to your story.',
             location: {
