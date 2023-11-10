@@ -34,7 +34,17 @@ var config = {
             onChapterEnter: [
                 {
                     layer: 'grove-data',
-                    filter: ['==', ['number', ['get', 'year']], 1918], // Filter for the year 1918
+                    filter: [
+                        "match",
+                        ["get", "year"],
+                        ["1918"],
+                        1,
+                        ["1943"],
+                        0,
+                        ["1958"],
+                        0,
+                        0
+                    ],
                     opacity: 1,
                     //duration: 5000,
                 }
@@ -71,8 +81,17 @@ var config = {
             onChapterEnter: [
                 {
                     layer: 'grove-data',
-                    filter: ['==', ['number', ['get', 'year']], 1943], // Filter for the year 1918
-                    opacity: 1,
+                    filter: [
+                        "match",
+                        ["get", "year"],
+                        ["1918"],
+                        0,
+                        ["1943"],
+                        1,
+                        ["1958"],
+                        0,
+                        0
+                    ],                    opacity: 1,
                     //duration: 5000,
                 }
             ],
@@ -102,8 +121,17 @@ var config = {
             onChapterEnter: [
                 {
                     layer: 'grove-data',
-                    filter: ['==', ['number', ['get', 'year']], 1958], // Filter for the year 1918
-                    opacity: 1,
+                    filter: [
+                        "match",
+                        ["get", "year"],
+                        ["1918"],
+                        0,
+                        ["1943"],
+                        0,
+                        ["1958"],
+                        1,
+                        0
+                    ],                    opacity: 1,
                     //duration: 5000,
                 }
             ],
