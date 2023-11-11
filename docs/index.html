@@ -24,30 +24,21 @@
             width:100vw;
             position: fixed;
         }
-        #sliderbar {
+        /* Style for the slider container */
+        .slider-container {
             text-align: center;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 10px 20px;
-            background-color: transparent;
-            z-index: 2; /* Place it above the map */
+            margin-top: 20px;
         }
-        .timeline {
-            position: relative;
-            width: 100%;
-            height: 10px;
-            background-color: #ccc;
+
+        /* Style for the slider input */
+        .slider {
+            width: 80%;
         }
-        .marker {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #0071bc;
-            border-radius: 50%;
-            top: 50%;
-            transform: translateY(-50%);
+
+        /* Style for the selected year display */
+        #selectedYear {
+            font-size: 18px;
+            margin-top: 10px;
         }
         #mapInset {
             bottom:50px;
@@ -159,14 +150,9 @@
 <body>
 
 <div id="map"></div>
-<div id="sliderbar">
-    <h2>Year: <label id="active-year">1918</label></h2>
-    <input id="slider" class="row" type="range" min="1918" max="1958" step="1" value="1918" />
-    <div class="timeline">
-        <div class="marker" style="left: 0;"></div>
-        <div class="marker" style="left: 50%;"></div>
-        <div class="marker" style="left: 100%;"></div>
-    </div>
+<div class="slider-container">
+    <input type="range" min="1918" max="1958" step="1" value="1918" class="slider" id="yearSlider">
+    <p id="selectedYear">1918</p>
 </div>
 <div id="mapInset"></div>
 <div id="story"></div>
@@ -446,6 +432,17 @@ map.on("load", function() {
     //     // Call a function to change the chapter based on the selected year
     //     changeChapterBasedOnYear(selectedYear);
     // });
+
+    // Get the slider and selectedYear elements
+    const slider = document.getElementById("yearSlider");
+    const selectedYear = document.getElementById("selectedYear");
+
+    // Update the selected year when the slider value changes
+    slider.addEventListener("input", function() {
+        selectedYear.textContent = this.value;
+        // You can also update your map based on the selected year here
+    });
+
 
     // As the map moves, grab and update bounds in inset map.
     if (config.inset) {
