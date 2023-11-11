@@ -24,10 +24,31 @@
             width:100vw;
             position: fixed;
         }
+        #timeline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 10px 0;
+}
+        .timeline-marker {
+            background: #0071bc;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background 0.3s;
+        }
+
+        .timeline-marker:hover {
+            background: #ff5733;
+        }
+
         .slider-container {
             position: fixed;
-            bottom: 10px; /* Adjust the position as needed */
-            left: 10px; /* Adjust the position as needed */
+            bottom: 10px;
+            left: 10px;
             width: 250px;
             background-color: white;
             padding: 10px;
@@ -35,9 +56,11 @@
             border-radius: 5px;
             z-index: 2;
         }
+
         .slider {
             width: 100%;
         }
+
         #selectedYear {
             text-align: center;
         }
@@ -151,6 +174,12 @@
 <body>
 
 <div id="map"></div>
+<div id="timeline">
+    <div class="timeline-marker" data-chapter="0"></div>
+    <div class="timeline-marker" data-chapter="1"></div>
+    <div class="timeline-marker" data-chapter="2"></div>
+    <!-- Add more markers as needed, and set the data-chapter attribute accordingly -->
+</div>
 <div class="slider-container">
     <input type="range" min="1918" max="1958" step="1" value="1918" class="slider" id="yearSlider">
     <p id="selectedYear">1918</p>
@@ -518,51 +547,52 @@ window.addEventListener('resize', scroller.resize);
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  const timeline = document.getElementById("timeline");
-  const markers = document.querySelectorAll(".timeline-marker");
-  const progress = document.querySelector(".timeline-progress");
-  const yearSlider = document.getElementById("yearSlider");
-  const selectedYear = document.getElementById("selectedYear");
+    const timeline = document.getElementById("timeline");
+    const markers = document.querySelectorAll(".timeline-marker");
+    const progress = document.querySelector(".timeline-progress");
+    const yearSlider = document.getElementById("yearSlider");
+    const selectedYear = document.getElementById("selectedYear");
 
-  // Calculate the width of each timeline step
-  const stepWidth = 100 / (markers.length - 1);
+    // Calculate the width of each timeline step
+    const stepWidth = 100 / (markers.length - 1);
 
-  // Set the initial position of the progress bar
-  let currentStep = 0;
-  updateProgress(currentStep);
+    // Set the initial position of the progress bar
+    let currentStep = 0;
+    updateProgress(currentStep);
 
-  // Add click event listeners to timeline markers
-  markers.forEach((marker, index) => {
-    marker.addEventListener("click", () => {
-      // Update the progress and scroll to the corresponding chapter
-      updateProgress(index);
-      scrollToChapter(index);
+    // Add click event listeners to timeline markers
+    markers.forEach((marker, index) => {
+        marker.addEventListener("click", () => {
+            // Update the progress and scroll to the corresponding chapter
+            updateProgress(index);
+            scrollToChapter(index);
+        });
     });
-  });
 
-  // Add change event listener to the year slider
-  yearSlider.addEventListener("input", () => {
-    const selectedValue = yearSlider.value;
-    updateProgress(selectedValue - 1918); // Map slider value to step index
-    selectedYear.innerText = selectedValue;
-    scrollToChapter(selectedValue - 1918);
-  });
+    // Add change event listener to the year slider
+    yearSlider.addEventListener("input", () => {
+        const selectedValue = yearSlider.value;
+        updateProgress(selectedValue - 1918); // Map slider value to step index
+        selectedYear.innerText = selectedValue;
+        scrollToChapter(selectedValue - 1918);
+    });
 
-  // Function to update the progress bar
-  function updateProgress(step) {
-    currentStep = step;
-    const progressWidth = stepWidth * currentStep;
-    progress.style.width = `${progressWidth}%`;
-  }
-
-  // Function to scroll to the corresponding chapter
-  function scrollToChapter(step) {
-    const chapters = document.querySelectorAll(".step");
-    if (chapters[step]) {
-      chapters[step].scrollIntoView({ behavior: "smooth" });
+    // Function to update the progress bar
+    function updateProgress(step) {
+        currentStep = step;
+        const progressWidth = stepWidth * currentStep;
+        progress.style.width = `${progressWidth}%`;
     }
-  }
+
+    // Function to scroll to the corresponding chapter
+    function scrollToChapter(step) {
+        const chapters = document.querySelectorAll(".step");
+        if (chapters[step]) {
+            chapters[step].scrollIntoView({ behavior: "smooth" });
+        }
+    }
 });
+
 
 </script>
 
