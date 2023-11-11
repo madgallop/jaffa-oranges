@@ -566,6 +566,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Update the progress and scroll to the corresponding chapter
             updateProgress(index);
             scrollToChapter(index);
+            updateYearSlider(index);
         });
     });
 
@@ -591,10 +592,14 @@ document.addEventListener("DOMContentLoaded", function () {
             chapters[step].scrollIntoView({ behavior: "smooth" });
         }
     }
+
+    // Function to update the year slider
+    function updateYearSlider(step) {
+        yearSlider.value = step + 1918;
+    }
 });
-
-
 </script>
+
 
 </body>
 </html>
