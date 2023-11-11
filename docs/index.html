@@ -39,10 +39,21 @@
             height: 20px;
             border-radius: 50vw;
             cursor: pointer;
+            text-align: center;
             margin: 0 10px;
         }
         .timeline-marker:hover {
             background: #ff5733;
+        }
+        .timeline-line {
+            position: fixed;
+            background-color: orange;
+            height: 2px; /* Adjust the height of the line as needed */
+            width: calc(100% - 20px); /* Width of the line is the container width minus marker margins */
+            top: 50%;
+            transform: translateY(-1px); /* Center the line vertically */
+            left: 0;
+            z-index: -1; /* Place the line behind markers */
         }
         .slider-container {
             position: fixed;
@@ -172,10 +183,15 @@
 
 <div id="map"></div>
 <div id="timeline">
-    <div class="timeline-marker" data-chapter="0"></div>
-    <div class="timeline-marker" data-chapter="1"></div>
-    <div class="timeline-marker" data-chapter="2"></div>
-    <!-- Add more markers as needed, and set the data-chapter attribute accordingly -->
+    <div class="timeline-marker" data-chapter="0">
+        <p id="chapter-1-text">Palestinian Period</p>
+    </div>
+    <div class="timeline-marker" data-chapter="1">
+        <p id="chapter-1-text">Collaborative Period</p>
+    </div>
+    <div class="timeline-marker" data-chapter="2">
+        <p id="chapter-1-text">Israeli Period</p>
+    </div>
 </div>
 <div class="slider-container">
     <input type="range" min="1918" max="1958" step="1" value="1918" class="slider" id="yearSlider">
