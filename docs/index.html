@@ -29,7 +29,7 @@
             justify-content: space-between;
             align-items: center;
             width: 100vw;
-            margin: 10px 0;
+            margin: 60px 5px;
             position: fixed;
             bottom: 0;
             z-index: 2;
@@ -37,23 +37,37 @@
         .timeline-marker {
             background: #0071bc;
             width: 20px;
+            margin: 10px 25px;
             height: 20px;
             border-radius: 50vw;
             cursor: pointer;
             text-align: center;
-            margin: 0 10px;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            z-index: 2;
         }
         .timeline-marker:hover {
             background: orange;
+        }
+        .text-container {
+            background-color: rgba(238, 237, 237, 0); /* Background color for the text */
+            padding: 10px; /* Adjust the padding as needed */
+            border-radius: 0; /* Adjust border radius as needed */
+            z-index: -1;
         }
         .timeline-line {
             position: fixed;
             background-color: orange;
             height: 3px; /* Adjust the height of the line as needed */
-            width: calc(100% - 10px); /* Width of the line is the container width minus marker margins */
+            width: calc(100% - 75px); /* Width of the line is the container width minus marker margins */
             transform: translateY(-1px); /* Center the line vertically */
-            left: 10px;
-            z-index: -1; /* Place the line behind markers */
+            left: 20px;
+            right:10px;
+            margin: 10px 25px;
+            z-index: 0; /* Place the line behind markers */
         }
         #mapInset {
             bottom:50px;
@@ -81,9 +95,27 @@
             position: relative;
             z-index: 5;
         }
-        #header h1, #header h2, #header p {
+        #header h1{
             margin: 0;
             padding: 2vh 2vw;
+            padding: 1vh 1vw; /* Adjust the padding as needed */
+            font-size: 20px; /* Adjust the font size as needed */
+            text-align: center;
+            font-weight: bold;
+        }
+        #header h2{
+            margin: 0;
+            padding: 2vh 2vw;
+            padding: 1vh 1vw; /* Adjust the padding as needed */
+            font-size: 15px; /* Adjust the font size as needed */
+            text-align: center;
+            font-weight: normal;
+        } 
+        #header p {
+            margin: 0;
+            padding: 2vh 2vw;
+            padding: 1vh 1vw; /* Adjust the padding as needed */
+            font-size: 10px; /* Adjust the font size as needed */
             text-align: center;
         }
         #footer {
@@ -167,13 +199,19 @@
 <div id="map"></div>
 <div id="timeline">
     <div class="timeline-marker" data-chapter="0">
-        <p id="chapter-1-text">Palestinian Period</p>
+        <div class="text-container">
+            <p id="chapter-1-text">Palestinian Period</p>
+        </div>
     </div>
     <div class="timeline-marker" data-chapter="1">
-        <p id="chapter-1-text">Collaborative Period</p>
+        <div class="text-container">
+            <p id="chapter-1-text">Collaborative Period</p>
+        </div>
     </div>
     <div class="timeline-marker" data-chapter="2">
-        <p id="chapter-1-text">Israeli Period</p>
+        <div class="text-container">
+            <p id="chapter-1-text">Israeli Period</p>
+        </div>
     </div>
     <div class="timeline-line"></div>
 </div>

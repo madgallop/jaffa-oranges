@@ -23,8 +23,8 @@ var config = {
             //image: './path/to/image/source.png',
             //description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             location: {
-                center: [34.75128, 32.05786],
-                zoom: 12.33,
+                center: [34.72776, 32.05656],
+                zoom: 12.3,
                 pitch: 0.00,
                 bearing: 0
             },
@@ -58,14 +58,14 @@ var config = {
         },
         {
             id: 'second-identifier',
-            alignment: 'right',
+            alignment: 'left',
             hidden: false,
             title: 'Collaboration period',
             //image: './path/to/image/source.png',
             //description: 'Copy these sections to add to your story.',
             location: {
-                center: [34.75128, 32.05786],
-                zoom: 12.33,
+                center: [34.72776, 32.05656],
+                zoom: 12.3,
                 pitch: 0.00,
                 bearing: 0.00,
                 // flyTo additional controls-
@@ -111,8 +111,8 @@ var config = {
             //image: './path/to/image/source.png',
             //description: 'Copy these sections to add to your story.',
             location: {
-                center: [34.75128, 32.05786],
-                zoom: 12.33,
+                center: [34.72776, 32.05656],
+                zoom: 12.3,
                 pitch: 0,
                 bearing: 0.00
             },
@@ -146,14 +146,14 @@ var config = {
         },
         {
             id: 'fourth-chapter',
-            alignment: 'fully',
+            alignment: 'left',
             hidden: false,
             title: 'Destruction',
             //image: './path/to/image/source.png',
             //description: 'Copy these sections to add to your story.',
             location: {
-                center: [34.75128, 32.05786],
-                zoom: 12.33,
+                center: [34.72776, 32.05656],
+                zoom: 12.3,
                 pitch: 0,
                 bearing: 0
             },
