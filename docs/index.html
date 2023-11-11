@@ -24,22 +24,6 @@
             width:100vw;
             position: fixed;
         }
-        /* Style for the slider container */
-        .slider-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        /* Style for the slider input */
-        .slider {
-            width: 80%;
-        }
-
-        /* Style for the selected year display */
-        #selectedYear {
-            font-size: 18px;
-            margin-top: 10px;
-        }
         #mapInset {
             bottom:50px;
             right:30px;
@@ -360,90 +344,6 @@ map.on("load", function() {
         );
     };
 
-    // map.addSource('jafffa-orange-groves', {
-    //     type: 'fill',
-    //     // Use any Mapbox-hosted tileset using its tileset id.
-    //     // Learn more about where to find a tileset id:
-    //     // https://docs.mapbox.com/help/glossary/tileset-id/
-    //     url: 'madgallop.clospbg2f0ucb1nmujancrb8k-9wfx3'
-    //     });
-    // map.addLayer({
-    //         "id": "grove-data",
-    //         "type": "fill",
-    //         "paint": {
-    //             'fill-color': '#0080ff', // blue color fill
-    //             'fill-opacity': 0.5
-    //         },
-    //         "layout": {},
-    //         "source": "jafffa-orange-groves",
-    //         //"source-layer": "jafffa_orange_groves",
-    //         'filter': ['==', ['number', ['get', 'year']], 1918]
-    //     },
-    //     'road-label-simple');
-
-    // function updateTimelineMarkers(selectedYear) {
-    //     const markers = document.querySelectorAll('.marker');
-    //     const years = [1918, 1943, 1958];
-    //     markers.forEach((marker, index) => {
-    //         const position = (years[index] - 1918) / (1958 - 1918) * 100;
-    //         marker.style.left = `${position}%`;
-    //         if (selectedYear === years[index]) {
-    //             marker.style.backgroundColor = '#ff0000'; // Change marker color for the selected year
-    //         } else {
-    //             marker.style.backgroundColor = '#0071bc'; // Reset marker color for other years
-    //         }
-    //     });
-    // }
-
-    // function updateTimeSliderLabel(chapterIndex) {
-    //     const sliderLabel = document.getElementById('active-year');
-    //     if (chapterIndex === 0) {
-    //         sliderLabel.innerText = 'Palestinian Era';
-    //     } else if (chapterIndex === 1) {
-    //         sliderLabel.innerText = 'Collaboration Era';
-    //     } else if (chapterIndex === 2) {
-    //         sliderLabel.innerText = 'Israeli Era';
-    //     }
-    // }
-
-    // // Create a function to activate a specific chapter by index
-    // function activateChapter(chapterIndex) {
-    //     // Use scrollama to scroll to the desired chapter
-    //     scroller.scrollTo(chapterIndex);
-    //     updateTimeSliderLabel(chapterIndex);
-    // }
-    // // Create a function to change the chapter based on the selected year
-    // function changeChapterBasedOnYear(selectedYear) {
-    //     if (selectedYear === 1918) {
-    //         // Activate Chapter 1
-    //         activateChapter(0);
-    //     } else if (selectedYear === 1943) {
-    //         // Activate Chapter 2
-    //         activateChapter(1);
-    //     } else if (selectedYear === 1958) {
-    //         // Activate Chapter 3
-    //         activateChapter(2);
-    //     }
-    // }
-
-    // document.getElementById('slider').addEventListener('input', (event) => {
-    //     const selectedYear = parseInt(event.target.value);
-    //     updateTimelineMarkers(selectedYear);
-    //     // Call a function to change the chapter based on the selected year
-    //     changeChapterBasedOnYear(selectedYear);
-    // });
-
-    // Get the slider and selectedYear elements
-    const slider = document.getElementById("yearSlider");
-    const selectedYear = document.getElementById("selectedYear");
-
-    // Update the selected year when the slider value changes
-    slider.addEventListener("input", function() {
-        selectedYear.textContent = this.value;
-        // You can also update your map based on the selected year here
-    });
-
-
     // As the map moves, grab and update bounds in inset map.
     if (config.inset) {
     map.on('move', getInsetBounds);
@@ -598,6 +498,54 @@ function updateInsetLayer(bounds) {
 
 // setup resize event
 window.addEventListener('resize', scroller.resize);
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const timeline = document.getElementById("timeline");
+  const markers = document.querySelectorAll(".timeline-marker");
+  const progress = document.querySelector(".timeline-progress");
+  const yearSlider = document.getElementById("yearSlider");
+  const selectedYear = document.getElementById("selectedYear");
+
+  // Calculate the width of each timeline step
+  const stepWidth = 100 / (markers.length - 1);
+
+  // Set the initial position of the progress bar
+  let currentStep = 0;
+  updateProgress(currentStep);
+
+  // Add click event listeners to timeline markers
+  markers.forEach((marker, index) => {
+    marker.addEventListener("click", () => {
+      // Update the progress and scroll to the corresponding chapter
+      updateProgress(index);
+      scrollToChapter(index);
+    });
+  });
+
+  // Add change event listener to the year slider
+  yearSlider.addEventListener("input", () => {
+    const selectedValue = yearSlider.value;
+    updateProgress(selectedValue - 1918); // Map slider value to step index
+    selectedYear.innerText = selectedValue;
+    scrollToChapter(selectedValue - 1918);
+  });
+
+  // Function to update the progress bar
+  function updateProgress(step) {
+    currentStep = step;
+    const progressWidth = stepWidth * currentStep;
+    progress.style.width = `${progressWidth}%`;
+  }
+
+  // Function to scroll to the corresponding chapter
+  function scrollToChapter(step) {
+    const chapters = document.querySelectorAll(".step");
+    if (chapters[step]) {
+      chapters[step].scrollIntoView({ behavior: "smooth" });
+    }
+  }
+});
 
 </script>
 
