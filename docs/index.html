@@ -70,6 +70,15 @@
             margin: 10px 25px;
             z-index: 0; /* Place the line behind markers */
         }
+        #scale-bar {
+            position: fixed;
+            bottom: 0;            
+            margin: 10px 140px;
+            background: rgba(255, 255, 255, 0);
+            border: 2px solid #EFBF8F;
+            padding: 5px 27px;
+            font-size: 12px;
+        }
         #mapInset {
             bottom:50px;
             right:30px;
@@ -198,6 +207,9 @@
 <body>
 
 <div id="map"></div>
+<div id="scale-bar" class="mapboxgl-ctrl mapboxgl-ctrl-scale">
+    <span>1km</span>
+</div>
 <div id="timeline">
     <div class="timeline-marker" data-chapter="0">
         <div class="text-container">
@@ -439,8 +451,6 @@ map.on("load", function() {
         map.getSource("circle-fill").setData(newCircle);
         map.getSource("circle-outline").setData(newCircle);
     }
-
-
     if (config.use3dTerrain) {
         map.addSource('mapbox-dem', {
             'type': 'raster-dem',
