@@ -8,12 +8,13 @@
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
     <script src="https://unpkg.com/intersection-observer@0.12.0/intersection-observer.js"></script>
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
     <script src="https://unpkg.com/scrollama"></script>
     <style>
         body {
             margin:0;
             padding:0;
-            font-family: sans-serif;
+            font-family: Lucida Handwriting;
         }
         a, a:hover, a:visited {
             color: #0071bc;
@@ -35,7 +36,7 @@
             z-index: 2;
         }
         .timeline-marker {
-            background: #faa41af4;
+            background: #EFBF8F;
             width: 20px;
             margin: 10px 25px;
             height: 20px;
@@ -50,7 +51,7 @@
             z-index: 2;
         }
         .timeline-marker:hover {
-            background: #fc8610;
+            background: #f6a14c;
         }
         .text-container {
             background-color: rgba(238, 237, 237, 0); /* Background color for the text */
@@ -60,7 +61,7 @@
         }
         .timeline-line {
             position: fixed;
-            background-color: #faa41a85;
+            background-color: #EFBF8F;
             height: 3px; /* Adjust the height of the line as needed */
             width: calc(100% - 75px); /* Width of the line is the container width minus marker margins */
             transform: translateY(-1px); /* Center the line vertically */
@@ -389,6 +390,57 @@ var scroller = scrollama();
 
 
 map.on("load", function() {
+    var initialCircleRadius = 2; // Initial radius in kilometers
+    var currentCircleRadius = initialCircleRadius;
+    var maxRadiusChange = 8; // Maximum change in radius
+
+    var center = turf.point([34.71250, 32.07967]);
+    var options = {
+      steps: 80,
+      units: 'kilometers'
+    };
+
+    var circle = turf.circle(center, initialCircleRadius, options);
+
+    map.addLayer({
+        "id": "circle-fill",
+        "type": "fill",
+        "source": {
+            "type": "geojson",
+            "data": circle
+        },
+        "paint": {
+            "fill-pattern": "newestOrangeBabe-01",
+            "fill-opacity": 1
+        }
+    });
+
+    map.addLayer({
+        "id": "circle-outline",
+        "type": "line",
+        "source": {
+            "type": "geojson",
+            "data": circle
+        },
+        "paint": {
+            "line-color": "#9DA47F",
+            "line-opacity": 0.5,
+            "line-width": 3,
+        }
+    });
+
+    var circleFillLayer = map.getLayer("circle-fill");
+    var circleOutlineLayer = map.getLayer("circle-outline");
+
+     // Function to update the circle's radius
+    function updateCircleRadius(radius) {
+        currentCircleRadius = radius;
+        var newCircle = turf.circle(center, currentCircleRadius, options);
+        map.getSource("circle-fill").setData(newCircle);
+        map.getSource("circle-outline").setData(newCircle);
+    }
+
+
     if (config.use3dTerrain) {
         map.addSource('mapbox-dem', {
             'type': 'raster-dem',
@@ -435,9 +487,13 @@ map.on("load", function() {
     .onStepEnter(async response => {
         var current_chapter = config.chapters.findIndex(chap => chap.id === response.element.id);
         var chapter = config.chapters[current_chapter];
-        
+
         response.element.classList.add('active');
         map[chapter.mapAnimation || 'flyTo'](chapter.location);
+
+        // Update the circle radius based on the chapter
+        var newRadius = initialCircleRadius + (current_chapter * 2); // Adjust the increment as needed
+        updateCircleRadius(newRadius);
 
         // Incase you do not want to have a dynamic inset map,
         // rather want to keep it a static view but still change the
