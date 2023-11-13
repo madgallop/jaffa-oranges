@@ -10,8 +10,8 @@ var config = {
     theme: 'light',
     use3dTerrain: false, //set true for enabling 3D maps.
     auto: false,
-    title: 'Jaffa Oranges',
-    subtitle: "Agriculture, dispossession, and the shifting narrative of the orange groves of Palestine's ancient port city",
+    title: 'The Perfect Bite',
+    subtitle: "An exploration of the shifting narrative of Jaffa, Palestine's orange groves",
     byline: 'Madeleine Gallop',
     footer: 'Source: source citations, etc. <br> Created using <a href="https://github.com/mapbox/storytelling" target="_blank">Mapbox Storytelling</a> template.',
     chapters: [
@@ -19,7 +19,7 @@ var config = {
             id: 'slug-style-id',
             alignment: 'left',
             hidden: false,
-            title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            title: 'In the late 1800s and early 1900s, the Jaffa orange industry thrived under predominantly Palestinian ownership, flourishing during the Ottoman era. These groves were not just orchards but a vibrant part of the landscape, shaping the rich heritage of Palestinian agriculture during the early 20th century.',
             //image: './path/to/image/source.png',
             // description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             location: {
@@ -60,7 +60,7 @@ var config = {
             id: 'second-identifier',
             alignment: 'left',
             hidden: false,
-            title: 'Collaboration period',
+            title: 'In the era of collaboration, spanning the 1920s to the 1940s, the orange industry evolved amidst cooperation between Palestinian and Jewish farmers under the British Mandate. During this time, the orange groves extended further from the old town center as Jewish settlers arrived, enriching the agricultural landscape with diverse perspectives. However, as exports skyrocketed, the groves also became more fragmented, reflecting the changing dynamics of this unique period.',
             //image: './path/to/image/source.png',
             //description: 'Copy these sections to add to your story.',
             location: {
@@ -107,7 +107,7 @@ var config = {
             id: 'third-identifier',
             alignment: 'left',
             hidden: false,
-            title: 'Israeli Era',
+            title: 'In the Israeli ownership era, from the 1950s to the 1970s, the orange industry saw a shift towards total Israeli control. The Jaffa port closed in 1969 and exports dropped.',
             //image: './path/to/image/source.png',
             //description: 'Copy these sections to add to your story.',
             location: {
