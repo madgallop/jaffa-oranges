@@ -5,16 +5,41 @@
     <title>Mapbox Storytelling</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/mapbox/assembly/publisher-staging/src/svgs/mapbox.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gill+Sans:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap" rel="stylesheet">
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
     <script src="https://unpkg.com/intersection-observer@0.12.0/intersection-observer.js"></script>
     <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
     <script src="https://unpkg.com/scrollama"></script>
     <style>
+        /* Font for title and subtitle */
+        #header h1, #header h2 {
+        font-family: 'Playfair Display', serif;
+        }
+        /* Font for chapters */
+        .step h3 {
+            font-family: 'Avenir', sans-serif;
+            font-weight: normal;
+            opacity: 0.9;
+            color: #4d4d4dec;
+            margin: 0;
+            padding: 0.5vh 0.5vw; /* Adjust the padding as needed */
+            text-align: left;
+            font-size: 10px;
+            width: 50%; /* Set the width to 50% */
+            text-align: justify;
+        }
         body {
             margin:0;
             padding:0;
-            font-family: Lucida Handwriting;
+            font-family: 'Avenir', sans-serif;
+            font-weight: normal;
+            opacity: 0.9;
+            color: #4d4d4dec;
+            text-align: justify;
         }
         a, a:hover, a:visited {
             color: #0071bc;
@@ -44,6 +69,7 @@
             cursor: pointer;
             text-align: center;
             font-size: 12px;
+            font-family: 'Playfair Display', serif;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -78,6 +104,7 @@
             border: 2px solid #EFBF8F;
             padding: 5px 27px;
             font-size: 12px;
+            font-family: 'Playfair Display', serif;
         }
         #mapInset {
             bottom:50px;
@@ -180,7 +207,7 @@
         }
 
         .step div {
-            padding:  25px 50px;
+            padding:  25px 0px;
             line-height: 25px;
             font-size: 13px;
         }
