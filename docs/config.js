@@ -10,8 +10,8 @@ var config = {
     theme: 'light',
     use3dTerrain: false, //set true for enabling 3D maps.
     auto: false,
-    title: 'The Perfect Bite',
-    subtitle: "An exploration of the shifting narrative of Jaffa, Palestine's orange groves",
+    title: 'THE PERFECT BITE',
+    subtitle: "Growth and demise of the orange groves of Jaffa",
     byline: 'Madeleine Gallop',
     footer: 'Source: source citations, etc. <br> Created using <a href="https://github.com/mapbox/storytelling" target="_blank">Mapbox Storytelling</a> template.',
     chapters: [
