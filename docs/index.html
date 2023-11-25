@@ -19,7 +19,7 @@
         }
         /* Sticky positioning for the exposition */
         #exposition {
-            background-color: #f6f3ee; /* Changed background color */
+            background-color: #f6f3eeb7; /* Changed background color */
             text-align: center; /* Center the text */
             font-family: 'EB Garamond', serif; /* Use EB Garamond font */
             padding: 20px;
@@ -37,6 +37,15 @@
             height: 100vh; /* Occupy the remaining viewport height */
             transition: height 0.3s ease; /* Add transition for smooth height change */
         }
+        body {
+            margin:0;
+            padding:0;
+            font-family: 'Avenir', sans-serif;
+            font-weight: normal;
+            opacity: 1;
+            color: #4d4d4dec;
+            text-align: justify;
+        }
         #map {
             height: 100vh;
             width: 100%;
@@ -47,6 +56,7 @@
 
         /* Font for title and subtitle */
         #exposition h1{
+            color: rgb(119, 118, 118);
             margin: 0;
             padding: 2vh 2vw;
             padding: 1vh 1vw; /* Adjust the padding as needed */
@@ -65,8 +75,9 @@
             font-weight: normal;
             font-family: 'EB+Garamond', serif;
             letter-spacing: 3px; 
+            color:#93794E;
         } 
-        #exposition p {
+        #exposition p1 {
             margin: 0;
             padding: 2vh 2vw;
             padding: 1vh 1vw; /* Adjust the padding as needed */
@@ -75,11 +86,18 @@
             font-family: 'EB+Garamond', serif;
             letter-spacing: 1px; 
         }
+        #exposition p2 {
+            margin: 0;
+            padding: 2vh 2vw;
+            padding: 1vh 1vw; /* Adjust the padding as needed */
+            font-size: 14px; /* Adjust the font size as needed */
+            text-align: center;
+            font-family: 'EB+Garamond', serif;
+        }
         /* Font for chapters */
         .step h3 {
             font-family: 'Avenir', sans-serif;
             font-weight: normal;
-            opacity: 1;
             color: rgb(136, 136, 136);
             margin: 0;
             padding: 0.5vh 0.5vw; /* Adjust the padding as needed */
@@ -88,7 +106,13 @@
             width: 50%; /* Set the width to 50% */
             text-align: justify;
             letter-spacing: 0px; 
-
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        /* Active class for fade-in */
+        .step.active h3 {
+            transition: opacity 1s ease;
+            opacity: 1;
         }
         #timeline {
             display: flex;
@@ -109,7 +133,8 @@
             cursor: pointer;
             text-align: center;
             font-size: 12px;
-            font-family: 'Besley', sans-serif;
+            font-family: 'EB+Garamond', serif;
+            color: rgb(119, 118, 118);
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -119,9 +144,10 @@
         .timeline-marker:hover {
             background: #f6a14c;
         }
-        .timeline-marker:focus {
-            /* Your styles for the currently selected timeline marker */
-            background: #f6a14c;
+        /* Example CSS to highlight the active timeline marker */
+        .timeline-marker.active-timeline-marker {
+            background-color: #f9912a; /* Change the color as desired */
+            /* Add any other styles to visually highlight the active marker */
         }
         .text-container {
             background-color: rgba(238, 237, 237, 0); /* Background color for the text */
@@ -148,7 +174,8 @@
             border: 2px solid #EFBF8F;
             padding: 5px 27px;
             font-size: 12px;
-            font-family: 'Besley';
+            font-family: 'EB+Garamond', serif;
+            color: rgb(119, 118, 118);
         }
         #mapInset {
             bottom:50px;
@@ -216,8 +243,10 @@
             padding-bottom: 50vh;
             /* margin-bottom: 10vh; */
             opacity: 0;
+            transition: opacity 1s ease; /* Add transition effect over 2 seconds */
         }
         .step.active {
+            transition: opacity 1s ease-in-out;
             opacity: 0.9;
         }
 
@@ -250,9 +279,10 @@
 
 <div id="exposition" class="exposition-hidden">
     <div class="title-text">
-        <h1>THE PERFECT BITE</h1>
-        <h2>Growth and demise of the orange groves of Jaffa</h2>
-        <p>Madeleine Gallop</p>
+        <h1>THE PERFECT BITE:<br> AGRICULTURE AND DISPOSSESSION IN JAFFA, PALESTINE</h1>
+        <!-- <h2>Madeleine Gallop</h2> -->
+        <p1>Scroll through time or select on of the three defining periods of the Jaffa orange on the timeline below.</p>
+        <!-- <p2>Scroll through time or select on of the three defining periods of the Jaffa orange on the timeline below.</p> -->
     </div>
 </div>
 <div id="map-container">
@@ -480,8 +510,21 @@ map.on("load", function() {
         offset: 0.5,
         progress: true
     })
+    
     .onStepEnter(async response => {
         var current_chapter = config.chapters.findIndex(chap => chap.id === response.element.id);
+
+        document.querySelectorAll('.timeline-marker').forEach(marker => {
+            marker.classList.remove('active-timeline-marker');
+        });
+
+        // Add active class to the corresponding timeline marker
+        var currentTimelineMarker = document.querySelector(`.timeline-marker[data-chapter="${current_chapter}"]`);
+        if (currentTimelineMarker) {
+            currentTimelineMarker.classList.add('active-timeline-marker');
+        }
+
+
         var chapter = config.chapters[current_chapter];
 
         response.element.classList.add('active');
@@ -502,9 +545,7 @@ map.on("load", function() {
             insetMap.flyTo({center: chapter.location.center, zoom: 3});
           }
         }
-        if (config.showMarkers) {
-            marker.setLngLat(chapter.location.center);
-        }
+
         if (chapter.onChapterEnter.length > 0) {
             chapter.onChapterEnter.forEach(setLayerOpacity);
         }
@@ -541,6 +582,7 @@ map.on("load", function() {
         document.querySelectorAll('[data-scrollama-index="0"]')[0].scrollIntoView();
     }
 });
+
 
 //Helper functions for insetmap
 function getInsetBounds() {
