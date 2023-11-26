@@ -544,18 +544,18 @@ map.on("load", function() {
 
         // document.getElementById("exposition").classList.add("exposition-hidden");
 
-        map.addLayer({
-            "id": "circle-fill",
-            "type": "fill",
-            "source": {
-                "type": "geojson",
-                "data": circle
-            },
-            "paint": {
-                "fill-pattern": "newestOrangeBabe-01",
-                "fill-opacity": 1
-            }
-        });
+        // map.addLayer({
+        //     "id": "circle-fill",
+        //     "type": "fill",
+        //     "source": {
+        //         "type": "geojson",
+        //         "data": circle
+        //     },
+        //     "paint": {
+        //         "fill-pattern": "newestOrangeBabe-01",
+        //         "fill-opacity": 1
+        //     }
+        // });
 
         // map.addLayer({
         //     "id": "circle-outline",
@@ -575,8 +575,27 @@ map.on("load", function() {
         var circleOutlineLayer = map.getLayer("circle-outline");
 
         // Inside the updateCircleRadiusAndStoreOutline function
-        function updateCircleRadiusAndStoreOutline(radius) {
+        function updateCircleRadiusAndStoreOutline(radius, response) {
             var newCircle = turf.circle(center, radius, options);
+
+            if (map.getLayer('circle-fill')) {
+                map.removeLayer('circle-fill');
+                map.removeSource('circle-fill');
+            }
+
+            map.addLayer({
+                "id": "circle-fill",
+                "type": "fill",
+                "source": {
+                    "type": "geojson",
+                    "data": newCircle
+                },
+                "paint": {
+                    "fill-pattern": "newestOrangeBabe-01",
+                    "fill-opacity": 1
+                }
+            });
+
             map.getSource("circle-fill").setData(newCircle);
             circleOutlines.push(newCircle);
 
@@ -619,7 +638,7 @@ map.on("load", function() {
             });
         }
 
-        updateCircleRadiusAndStoreOutline(newRadius);
+        updateCircleRadiusAndStoreOutline(newRadius, response);
 
 
         response.element.classList.add('active');
