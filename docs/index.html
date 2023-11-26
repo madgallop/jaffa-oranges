@@ -541,35 +541,7 @@ map.on("load", function() {
             currentTimelineMarker.classList.add('active-timeline-marker');
         }
 
-
         // document.getElementById("exposition").classList.add("exposition-hidden");
-
-        // map.addLayer({
-        //     "id": "circle-fill",
-        //     "type": "fill",
-        //     "source": {
-        //         "type": "geojson",
-        //         "data": circle
-        //     },
-        //     "paint": {
-        //         "fill-pattern": "newestOrangeBabe-01",
-        //         "fill-opacity": 1
-        //     }
-        // });
-
-        // map.addLayer({
-        //     "id": "circle-outline",
-        //     "type": "line",
-        //     "source": {
-        //         "type": "geojson",
-        //         "data": circle
-        //     },
-        //     "paint": {
-        //         "line-color": "#9DA47F",
-        //         "line-opacity": 0.5,
-        //         "line-width": 3,
-        //     }
-        // });
 
         var circleFillLayer = map.getLayer("circle-fill");
         var circleOutlineLayer = map.getLayer("circle-outline");
@@ -638,7 +610,14 @@ map.on("load", function() {
             });
         }
 
-        updateCircleRadiusAndStoreOutline(newRadius, response);
+        const responseObj = {
+            element: {
+                id: response.element.id // Assuming this is where 'id' is stored
+                // Other properties if needed
+            }
+        };
+
+        updateCircleRadiusAndStoreOutline(newRadius, responseObj);
 
 
         response.element.classList.add('active');
