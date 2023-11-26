@@ -614,10 +614,6 @@ map.on("load", function() {
             });
         }
 
-
-
-
-
         updateCircleRadiusAndStoreOutline(newRadius);
 
 
@@ -626,7 +622,26 @@ map.on("load", function() {
 
         // Update the circle radius based on the chapter
 
+        map.addSource('buildings_good_zoom_new-brvtke', {
+            type: "vector",
+            "url": "mapbox://madgallop.btzluc5i" // Your tileset URL
+        });
 
+        if (response.element.id === 'fourth-chapter') {
+            // Add the building footprints layer
+            map.addLayer({
+                "id": "jaffa_building_footprints",
+                "type": "fill", // Assuming it's a fill layer
+                "source": 'buildings_good_zoom_new-brvtke',
+                "source-layer": " jaffa_building_footprints", // Specify your source layer name
+                "paint": {
+                    "fill-color": "black",
+                    "fill-opacity": 1 // Adjust opacity as needed
+                    // Add other paint properties
+                }
+            });
+        }
+        
         if (chapter.onChapterEnter.length > 0) {
             chapter.onChapterEnter.forEach(setLayerOpacity);
         }
@@ -640,7 +655,12 @@ map.on("load", function() {
              });
         }
     })
+    
     .onStepExit(response => {
+        if (response.element.id === 'fourth-chapter') {
+            // Remove the building footprints layer
+            map.removeLayer('jaffa-building-footprints');
+        }
         var chapter = config.chapters.find(chap => chap.id === response.element.id);
         response.element.classList.remove('active');
         if (chapter.onChapterExit.length > 0) {
