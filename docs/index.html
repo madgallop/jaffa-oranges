@@ -510,8 +510,6 @@ map.on("load", function() {
 
     circleOutlines = []
 
-    let currentChapterId = null;
-
     // setup the instance, pass callback functions
     scroller
     .setup({
@@ -521,8 +519,7 @@ map.on("load", function() {
     })
     
     .onStepEnter(async response => {
-        currentChapterId = response.element.id;
-        var chapterRadii = [1.3, 4, 2.125, 0]
+        var chapterRadii = [1.3, 4, 2.125]
         var center = turf.point([34.71250, 32.0686]);
         var options = {
         steps: 80,
@@ -578,13 +575,13 @@ map.on("load", function() {
         var circleOutlineLayer = map.getLayer("circle-outline");
 
         // Inside the updateCircleRadiusAndStoreOutline function
-        function updateCircleRadiusAndStoreOutline(radius, chapterId) {
+        function updateCircleRadiusAndStoreOutline(radius) {
             var newCircle = turf.circle(center, radius, options);
             map.getSource("circle-fill").setData(newCircle);
             circleOutlines.push(newCircle);
 
             circleOutlines.forEach((outline, index) => {
-                var isActiveChapter = config.chapters[index].id === chapterId;
+                var isActiveChapter = config.chapters[index].id === response.element.id;
                 var lineOpacity = isActiveChapter ? 1 : 0.3; // Set opacity for inactive chapters
 
                 var lineDashArray = isActiveChapter ? undefined : [5, 3]; // Set line dash for inactive chapters
@@ -609,6 +606,7 @@ map.on("load", function() {
                 if (lineDashArray) {
                     paintProperties['line-dasharray'] = lineDashArray;
                 }
+
                 map.addLayer({
                     'id': layerId,
                     'type': 'line',
@@ -619,31 +617,9 @@ map.on("load", function() {
                     'paint': paintProperties // Assign the paint properties
                 });
             });
-
-            if (chapterId === 'fourth-chapter') {
-                map.removeLayer('circle-fill');
-            } else {
-                // If it's not the fourth chapter, ensure 'circle-fill' layer is present
-                if (!map.getLayer('circle-fill')) {
-                    map.addLayer({
-                        "id": "circle-fill",
-                        "type": "fill",
-                        "source": {
-                            "type": "geojson",
-                            "data": newCircle
-                        },
-                        "paint": {
-                            "fill-pattern": "newestOrangeBabe-01",
-                            "fill-opacity": 1
-                        }
-                    });
-                }
-            }
         }
 
-        console.log(currentChapterId);
-
-        updateCircleRadiusAndStoreOutline(newRadius, currentChapterId);
+        updateCircleRadiusAndStoreOutline(newRadius);
 
 
         response.element.classList.add('active');
@@ -667,7 +643,6 @@ map.on("load", function() {
         //     });
         // }
         
-
         if (chapter.onChapterEnter.length > 0) {
             chapter.onChapterEnter.forEach(setLayerOpacity);
         }
@@ -683,14 +658,20 @@ map.on("load", function() {
     })
     
     .onStepExit(response => {
+        // if (response.element.id === 'fourth-chapter') {
+        //     // Remove the building footprints layer
+        //     map.removeLayer('jaffa-building-footprints');
+        // }
         var chapter = config.chapters.find(chap => chap.id === response.element.id);
         response.element.classList.remove('active');
-
         if (chapter.onChapterExit.length > 0) {
             chapter.onChapterExit.forEach(setLayerOpacity);
         }
     });
 
+    if (config.auto) {
+        document.querySelectorAll('[data-scrollama-index="0"]')[0].scrollIntoView();
+    }
 });
 
 window.addEventListener('scroll', function() {
