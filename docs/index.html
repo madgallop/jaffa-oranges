@@ -19,12 +19,18 @@
         }
         /* Sticky positioning for the exposition */
         #exposition {
-            background-color: #f6f3eeb7; /* Changed background color */
+            background-image: url('/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/landing_place.jpg');
+            background-size: 60% auto; /* Makes the background image slightly smaller */
+            background-origin: content-box; /* Preserves the background color within padding */
+            background-clip: content-box; /* Applies the background within the padding */
+            background-position: center;
+            background-color: #f6f3eeb7; 
+            background-repeat: no-repeat; /* Prevents the background image from repeating */
+            background-attachment: fixed; /* Fixes the background position */
             text-align: center; /* Center the text */
             font-family: 'EB Garamond', serif; /* Use EB Garamond font */
-            padding: 20px;
             box-sizing: border-box;
-            height: 50vh; /* Set the height to half the viewport height */
+            height: 96vh; /* Set the height to half the viewport height */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -55,44 +61,48 @@
         /* Adjustments for the exposition text */
 
         /* Font for title and subtitle */
-        #exposition h1{
+        .h1-text{
             color: rgb(119, 118, 118);
-            margin: 0;
-            padding: 2vh 2vw;
-            padding: 1vh 1vw; /* Adjust the padding as needed */
+            position: absolute;
+            top: 0;
+            left: 20.5%;
+            padding: 2vh 1vw; /* Adjust the padding as needed */
             font-size: 20px; /* Adjust the font size as needed */
             text-align: center;
             font-weight: bold;
             font-family: 'EB+Garamond', serif;
             letter-spacing: 5px;
         }
-        #exposition h2{
-            margin: 0;
-            padding: 2vh 2vw;
-            padding: 1vh 1vw; /* Adjust the padding as needed */
-            font-size: 15px; /* Adjust the font size as needed */
-            text-align: center;
-            font-weight: normal;
-            font-family: 'EB+Garamond', serif;
-            letter-spacing: 3px; 
-            color:#93794E;
-        } 
-        #exposition p1 {
-            margin: 0;
-            padding: 2vh 2vw;
-            padding: 1vh 1vw; /* Adjust the padding as needed */
-            font-size: 10px; /* Adjust the font size as needed */
-            text-align: center;
-            font-family: 'EB+Garamond', serif;
-            letter-spacing: 1px; 
-        }
-        #exposition p2 {
-            margin: 0;
-            padding: 2vh 2vw;
-            padding: 1vh 1vw; /* Adjust the padding as needed */
+        .p1-text{
+            color: rgb(119, 118, 118);
+            max-width: 30vh;
+            position: absolute;
+            top: 20vh;
+            left: 5vh;
+            padding: 8vh 7vw; /* Adjust the padding as needed */
+            max-width: 50vh; /* Set the maximum width to 50% */
+            margin: 0 auto; /* Center the element horizontally */
             font-size: 14px; /* Adjust the font size as needed */
             text-align: center;
+            float:left;
+            font-family: 'EB+Garamond', serif; /* Use correct font name */
+            letter-spacing: 1px; 
+            background-color: #dddbc8e0;
+        }
+        .p3-text {
+            margin: 0;
+            position:absolute;
+            top:40vh;
+            right: 7vh;
+            color: rgb(119, 118, 118);
+            max-width: 30vh;
+            padding: 5vh 8vw;
+            font-size: 13px; /* Adjust the font size as needed */
+            text-align: center;
+            float: right;
             font-family: 'EB+Garamond', serif;
+            font-weight: lighter;
+            background-color:#e7c094d7;
         }
         /* Font for chapters */
         .step h3 {
@@ -169,7 +179,7 @@
         #scale-bar {
             position: fixed;
             bottom: 0;            
-            margin: 10px 140px;
+            margin: 3px 140px;
             background: rgba(255, 255, 255, 0);
             border: 2px solid #EFBF8F;
             padding: 5px 27px;
@@ -180,23 +190,50 @@
         #mapInset {
             bottom:50px;
             right:30px;
-            height: 180px;
-            width:250px;
+            height: 80px; /* Example height */
+            width: 120px; /* Example width */
             max-width:100%;
             position: fixed;
             z-index: 1;
             opacity: 1;
             transition: opacity 0.5s ease-in-out;
             pointer-events: none;
+            display: none;
         }
-        #mapInset .mapboxgl-ctrl-bottom-left{
+        #insetCanvas {
+            position: absolute;
+            top: 65vh;
+            left: 8vh; 
+            height: auto;
+            width: 180px;
+            border: 1px solid #ccc;
+            float:right;
+            opacity: 90%;
+        }
+        .inset-map {
+            width: 100%; /* Set width to 100% */
+            text-align: right; /* Center the image horizontally */
+            padding: 20px; /* Add padding as needed */
+            float:right;
+        }
+        #inset-map-image {
+            max-width: 100%; /* Ensure the image doesn't exceed its container */
+            max-height: 100%; /* Ensure the image doesn't exceed its container */
+            width: auto; /* Allow the image to adjust its width */
+            height: auto; /* Allow the image to adjust its height */
+            border: 1px solid #ccc; /* Optional: Add border for visibility */
+            float: right;
+        /* You can adjust other styles as needed */
+        }
+
+        /* #mapInset .mapboxgl-ctrl-bottom-left{
             display: none;
         }
         @media (max-width: 500px) {
             #mapInset {
                 display: none;
             }
-        }
+        } */
         #footer {
             width: 100%;
             min-height: 5vh;
@@ -262,6 +299,7 @@
 
         @media (max-width: 750px) {
             .centered, .lefty, .righty, .fully {
+                display: none;
                 width: 90vw;
                 margin: 0 auto;
             }
@@ -279,10 +317,10 @@
 
 <div id="exposition" class="exposition-hidden">
     <div class="title-text">
-        <h1>THE PERFECT BITE:<br> AGRICULTURE AND DISPOSSESSION IN JAFFA, PALESTINE</h1>
-        <!-- <h2>Madeleine Gallop</h2> -->
-        <p1>Scroll through time or select on of the three defining periods of the Jaffa orange on the timeline below.</p>
-        <!-- <p2>Scroll through time or select on of the three defining periods of the Jaffa orange on the timeline below.</p> -->
+        <h1 class="h1-text">THE PERFECT BITE:<br> COLLABORATION AND DISPOSSESSION IN JAFFA, PALESTINE</h1>
+        <p class="p1-text">The Jaffa orange was once Palestine's primary export and strong symbol of identity. While Palestinian farmers collaborated with Jewish settlers for decades, after the Nakba, or, in English, "Catastrophe" of 1948, Israeli settlers took the industry over, and as Israel's population expanded, the orange industry declined. The maps below trace the story of the orange, from its early, Palestinian dominated days, until its final collapse in the late 20th century.</p>
+        <canvas id="insetCanvas"></canvas>
+        <p class="p3-text"> Scroll through time or select on of the three defining periods of the Jaffa orange on the timeline below.<br><br><i>Note: circle radius = total area of Jaffa orange groves/total boxes of Jaffa oranges exported.</i></p>
     </div>
 </div>
 <div id="map-container">
@@ -434,74 +472,40 @@ var map = new mapboxgl.Map({
 if (config.inset) {
  var insetMap = new mapboxgl.Map({
     container: 'mapInset', // container id
-    style: 'mapbox://styles/mapbox/dark-v10', //hosted style id
+    style: 'mapbox://styles/madgallop/clpekqaqe006801p79o6x0yic', //hosted style id
     center: config.chapters[0].location.center,
     // Hardcode above center value if you want insetMap to be static.
-    zoom: 3, // starting zoom
+    zoom: 5.5, // starting zoom
     hash: false,
     interactive: false,
-    attributionControl: false,
-    //Future: Once official mapbox-gl-js has globe view enabled,
-    //insetmap can be a globe with the following parameter.
-    //projection: 'globe'
+    attributionControl: false
   });
 }
+
 
 // instantiate the scrollama
 var scroller = scrollama();
 
-
 map.on("load", function() {
-    var initialCircleRadius = 2; // Initial radius in kilometers
-    var currentCircleRadius = initialCircleRadius;
-    var maxRadiusChange = 8; // Maximum change in radius
+    insetMap.on("load", function() {
+        var insetCanvas = document.getElementById('insetCanvas')
+        var insetContext = insetCanvas.getContext('2d');
+        var insetMapCanvas = insetMap.getCanvas();
+        insetCanvas.width = insetMapCanvas.width;
+        insetCanvas.height = insetMapCanvas.height;
 
-    var center = turf.point([34.71250, 32.07967]);
-    var options = {
-      steps: 80,
-      units: 'kilometers'
-    };
+        // Capture the inset map onto the canvas
+        insetContext.drawImage(insetMap.getCanvas(), 0, 0)
 
-    var circle = turf.circle(center, initialCircleRadius, options);
-    document.getElementById("exposition").classList.add("exposition-hidden");
+        // Convert the canvas to a data URL
+        // var imgURL = insetCanvas.toDataURL('image/png');
 
-    map.addLayer({
-        "id": "circle-fill",
-        "type": "fill",
-        "source": {
-            "type": "geojson",
-            "data": circle
-        },
-        "paint": {
-            "fill-pattern": "newestOrangeBabe-01",
-            "fill-opacity": 1
-        }
+        // // Create an image element and set its source to the data URL
+        // var img = document.createElement('img');
+        // img.src = imgURL;
+        // img.id = 'inset-map-image';
+        // document.querySelector('.inset-map').appendChild(img);
     });
-
-    map.addLayer({
-        "id": "circle-outline",
-        "type": "line",
-        "source": {
-            "type": "geojson",
-            "data": circle
-        },
-        "paint": {
-            "line-color": "#9DA47F",
-            "line-opacity": 0.5,
-            "line-width": 3,
-        }
-    });
-
-    var circleFillLayer = map.getLayer("circle-fill");
-    var circleOutlineLayer = map.getLayer("circle-outline");
-
-     // Function to update the circle's radius
-    function updateCircleRadius(radius) {
-        currentCircleRadius = radius;
-        var newCircle = turf.circle(center, currentCircleRadius, options);
-        map.getSource("circle-fill").setData(newCircle);
-        map.getSource("circle-outline").setData(newCircle);
-    }
 
     // setup the instance, pass callback functions
     scroller
@@ -512,6 +516,56 @@ map.on("load", function() {
     })
     
     .onStepEnter(async response => {
+        var initialCircleRadius = 2; // Initial radius in kilometers
+        var currentCircleRadius = initialCircleRadius;
+        var maxRadiusChange = 8; // Maximum change in radius
+
+        var center = turf.point([34.71250, 32.07967]);
+        var options = {
+        steps: 80,
+        units: 'kilometers'
+        };
+
+        var circle = turf.circle(center, initialCircleRadius, options);
+        document.getElementById("exposition").classList.add("exposition-hidden");
+
+        map.addLayer({
+            "id": "circle-fill",
+            "type": "fill",
+            "source": {
+                "type": "geojson",
+                "data": circle
+            },
+            "paint": {
+                "fill-pattern": "newestOrangeBabe-01",
+                "fill-opacity": 1
+            }
+        });
+
+        map.addLayer({
+            "id": "circle-outline",
+            "type": "line",
+            "source": {
+                "type": "geojson",
+                "data": circle
+            },
+            "paint": {
+                "line-color": "#9DA47F",
+                "line-opacity": 0.5,
+                "line-width": 3,
+            }
+        });
+
+        var circleFillLayer = map.getLayer("circle-fill");
+        var circleOutlineLayer = map.getLayer("circle-outline");
+
+        // Function to update the circle's radius
+        function updateCircleRadius(radius) {
+            currentCircleRadius = radius;
+            var newCircle = turf.circle(center, currentCircleRadius, options);
+            map.getSource("circle-fill").setData(newCircle);
+            map.getSource("circle-outline").setData(newCircle);
+        }
         var current_chapter = config.chapters.findIndex(chap => chap.id === response.element.id);
 
         document.querySelectorAll('.timeline-marker').forEach(marker => {
@@ -524,7 +578,6 @@ map.on("load", function() {
             currentTimelineMarker.classList.add('active-timeline-marker');
         }
 
-
         var chapter = config.chapters[current_chapter];
 
         response.element.classList.add('active');
@@ -534,33 +587,11 @@ map.on("load", function() {
         var newRadius = initialCircleRadius + (current_chapter * 2); // Adjust the increment as needed
         updateCircleRadius(newRadius);
 
-        // Incase you do not want to have a dynamic inset map,
-        // rather want to keep it a static view but still change the
-        // bbox as main map move: comment out the below if section.
-        if (config.inset) {
-          if (chapter.location.zoom < 5) {
-            insetMap.flyTo({center: chapter.location.center, zoom: 0});
-          }
-          else {
-            insetMap.flyTo({center: chapter.location.center, zoom: 3});
-          }
-        }
-
         if (chapter.onChapterEnter.length > 0) {
             chapter.onChapterEnter.forEach(setLayerOpacity);
         }
         if (chapter.callback) {
             window[chapter.callback]();
-        }
-        if (chapter.rotateAnimation) {
-            map.once('moveend', () => {
-                const rotateNumber = map.getBearing();
-                map.rotateTo(rotateNumber + 180, {
-                    duration: 30000, easing: function (t) {
-                        return t;
-                    }
-                });
-            });
         }
         if (config.auto) {
              var next_chapter = (current_chapter + 1) % config.chapters.length;
@@ -577,96 +608,10 @@ map.on("load", function() {
         }
     });
 
-
     if (config.auto) {
         document.querySelectorAll('[data-scrollama-index="0"]')[0].scrollIntoView();
     }
 });
-
-
-//Helper functions for insetmap
-function getInsetBounds() {
-            let bounds = map.getBounds();
-
-            let boundsJson = {
-                "type": "FeatureCollection",
-                "features": [{
-                    "type": "Feature",
-                    "properties": {},
-                    "geometry": {
-                        "type": "Polygon",
-                        "coordinates": [
-                            [
-                                [
-                                    bounds._sw.lng,
-                                    bounds._sw.lat
-                                ],
-                                [
-                                    bounds._ne.lng,
-                                    bounds._sw.lat
-                                ],
-                                [
-                                    bounds._ne.lng,
-                                    bounds._ne.lat
-                                ],
-                                [
-                                    bounds._sw.lng,
-                                    bounds._ne.lat
-                                ],
-                                [
-                                    bounds._sw.lng,
-                                    bounds._sw.lat
-                                ]
-                            ]
-                        ]
-                    }
-                }]
-            }
-
-            if (initLoad) {
-                addInsetLayer(boundsJson);
-                initLoad = false;
-            } else {
-                updateInsetLayer(boundsJson);
-            }
-
-        }
-
-function addInsetLayer(bounds) {
-    insetMap.addSource('boundsSource', {
-        'type': 'geojson',
-        'data': bounds
-    });
-
-    insetMap.addLayer({
-        'id': 'boundsLayer',
-        'type': 'fill',
-        'source': 'boundsSource', // reference the data source
-        'layout': {},
-        'paint': {
-            'fill-color': '#fff', // blue color fill
-            'fill-opacity': 0.2
-        }
-    });
-    // // Add a black outline around the polygon.
-    insetMap.addLayer({
-        'id': 'outlineLayer',
-        'type': 'line',
-        'source': 'boundsSource',
-        'layout': {},
-        'paint': {
-            'line-color': '#000',
-            'line-width': 1
-        }
-    });
-}
-
-function updateInsetLayer(bounds) {
-    insetMap.getSource('boundsSource').setData(bounds);
-}
-
-// setup resize event
-window.addEventListener('resize', scroller.resize);
 
 window.addEventListener('scroll', function() {
     var scrollTop = window.scrollY;
