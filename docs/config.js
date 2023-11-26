@@ -135,6 +135,10 @@ var config = {
                         0
                     ],
                     //duration: 5000,
+                },
+                {
+                    layer: 'jaffa_building_footprints',
+                    opacity: 0
                 }
             ],
             onChapterExit: [
@@ -170,7 +174,7 @@ var config = {
             ],
             onChapterExit: [
                 {
-                    layer: 'jaffa-building-footprints',
+                    layer: 'jaffa_building_footprints',
                     opacity: 0
                 }
             ]

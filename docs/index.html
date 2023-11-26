@@ -508,8 +508,6 @@ map.on("load", function() {
         insetContext.drawImage(insetMap.getCanvas(), 0, 0)
     });
 
-    circleOutlines = []
-
     // setup the instance, pass callback functions
     scroller
     .setup({
@@ -545,9 +543,14 @@ map.on("load", function() {
 
         var circleFillLayer = map.getLayer("circle-fill");
         var circleOutlineLayer = map.getLayer("circle-outline");
+        var chapterOutlines = {}; // Object to store chapter outlines
 
-        // Inside the updateCircleRadiusAndStoreOutline function
         function updateCircleRadiusAndStoreOutline(radius, response) {
+            var center = turf.point([34.71250, 32.0686]);
+            var options = {
+                steps: 80,
+                units: 'kilometers'
+            };
             var newCircle = turf.circle(center, radius, options);
 
             if (map.getLayer('circle-fill')) {
@@ -569,29 +572,30 @@ map.on("load", function() {
             });
 
             map.getSource("circle-fill").setData(newCircle);
-            circleOutlines.push(newCircle);
 
-            circleOutlines.forEach((outline, index) => {
-                var isActiveChapter = config.chapters[index].id === response.element.id;
-                var lineOpacity = isActiveChapter ? 1 : 0.3; // Set opacity for inactive chapters
+            // Store the outline based on chapter ID
+            chapterOutlines[response.element.id] = newCircle;
 
-                var lineDashArray = isActiveChapter ? undefined : [5, 3]; // Set line dash for inactive chapters
+            // Loop through stored outlines to manage display and removal
+            Object.keys(chapterOutlines).forEach((chapterId, index) => {
+                var outline = chapterOutlines[chapterId];
+                var isActiveChapter = chapterId === response.element.id;
+                
+                var lineOpacity = isActiveChapter ? 1 : 0.3;
+                var lineDashArray = isActiveChapter ? undefined : [5, 3];
 
                 var layerId = 'circle-outline-' + index;
                 var existingLayer = map.getLayer(layerId);
 
-                // Check if the layer already exists and remove it before re-adding
                 if (existingLayer) {
                     map.removeLayer(layerId);
                     map.removeSource(layerId);
                 }
 
-                // Ensure line dash array and opacity are properly handled based on their values
                 var paintProperties = {
                     'line-color': '#9DA47F',
-                    'line-opacity': lineOpacity, // Set opacity here
-                    'line-width': isActiveChapter ? 3 : 3 * 0.5 // Set width for inactive chapters, reducing it to 75%
-
+                    'line-opacity': lineOpacity,
+                    'line-width': isActiveChapter ? 3 : 3 * 0.5
                 };
 
                 if (lineDashArray) {
@@ -605,10 +609,16 @@ map.on("load", function() {
                         'type': 'geojson',
                         'data': outline
                     },
-                    'paint': paintProperties // Assign the paint properties
+                    'paint': paintProperties
                 });
+                
+                // Remove inactive chapter outlines from the stored object and the map
+                if (!isActiveChapter) {
+                    delete chapterOutlines[chapterId];
+                }
             });
         }
+
 
         const responseObj = {
             element: {
