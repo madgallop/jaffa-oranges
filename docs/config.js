@@ -160,19 +160,20 @@ var config = {
             mapAnimation: 'flyTo',
             rotateAnimation: false,
             callback: '',
-            onChapterEnter: [{
-                layer: 'jaffa-building-footprints',
-                //filter:                  
-                opacity: 1,
-                //duration: 5000,
-            }
-        ],
-        onChapterExit: [
-            {
-                layer: 'jaffa-building-footprints',
-                opacity: 0
-            }
-        ]
+            onChapterEnter: [
+                {
+                    layer: 'jaffa_building_footprints',
+                    //filter:                  
+                    opacity: 1,
+                    //duration: 5000,
+                }
+            ],
+            onChapterExit: [
+                {
+                    layer: 'jaffa-building-footprints',
+                    opacity: 0
+                }
+            ]
         }
     ]
 };
