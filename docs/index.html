@@ -246,6 +246,31 @@
             position: relative;
             z-index: 5;
         }
+        #glowingTextBox {
+            position: fixed;
+            top: 100px; /* Adjust the top position */
+            right: 1vw; /* Adjust the position based on screen width */
+            z-index: 9999;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.682);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            pointer-events: none;
+            text-align: center;
+            font-size: 12px;
+            font-family: 'Avenir', sans-serif;
+            color: rgb(119, 118, 118);
+            /* Other styles */
+        }
+        .glow-visible {
+            opacity: 1; /* Make the box visible when this class is added */
+            pointer-events: auto; /* Enable interactions when visible */
+        }
+        .glow-hidden {
+            opacity: 0; /* Make the box visible when this class is added */
+            pointer-events: none; /* Enable interactions when visible */
+        }
         #features {
             padding-top: 10vh;
             padding-bottom: 10vh;
@@ -324,6 +349,7 @@
         <p class="p3-text"> Scroll through time or select on of the three defining periods of the Jaffa orange on the timeline below.<br><br><i>Note: circle radius = total area of Jaffa orange groves/total boxes of Jaffa oranges exported.</i></p>
     </div>
 </div>
+<div id="glowingTextBox" class="glow-hidden"></div>
 <div id="map-container">
     <div id="map"></div>
 </div>
@@ -493,6 +519,81 @@ if (config.inset) {
 var scroller = scrollama();
 
 map.on("load", function() {
+    const glowingTextBox = document.getElementById('glowingTextBox');
+
+
+    let currentContent = ''; // Variable to store the current text content
+
+    // Function to show the glowing text box
+    function showGlowingTextBox(coordinates, currentChapterIndex) {
+        if (glowingTextBox) {
+            console.log("showing");
+
+            // Set different text content based on the current chapter index
+            switch (currentChapterIndex) {
+                case 0:
+                    currentContent = 'Text for chapter 1';
+                    break;
+                case 1:
+                    currentContent = 'Text for chapter 2';
+                    break;
+                case 2:
+                    currentContent = 'Text for chapter 3';
+                    break;
+                default:
+                    currentContent = '';
+                    glowingTextBox.style.opacity = '0';
+                    break;
+        }
+            //     default:
+            //         currentContent = 'Destruction text'; // Reset content to empty string
+            //         break;               
+            // }
+
+            if (currentContent.trim() !== '') {
+                glowingTextBox.textContent = currentContent;
+                glowingTextBox.style.opacity = '1';
+                glowingTextBox.style.pointerEvents = 'auto';
+            } else {
+                console.error('Invalid chapter index or no content found!');
+            }
+        } else {
+            console.error('Glowing text box element not found!');
+        }
+    }
+
+
+    // Function to hide the glowing text box
+    function hideGlowingTextBox() {
+        if (glowingTextBox) {
+            console.log("hiding");
+            glowingTextBox.style.opacity = '0'; // Reduce opacity to hide the box
+            glowingTextBox.style.pointerEvents = 'none'; // Disable interactions when hidden
+        }
+    }
+
+    function getCurrentChapterIndex() {
+        const activeChapterElement = document.querySelector('.step.active');
+        const currentChapterIndex = Array.from(activeChapterElement.parentNode.children).indexOf(activeChapterElement);
+        return currentChapterIndex;
+    }
+
+    map.on('click', 'jafffa-orange-groves', (e) => {
+        const currentChapterIndex = getCurrentChapterIndex(); // Get the current chapter index
+        showGlowingTextBox(e.lngLat, currentChapterIndex);
+    });
+
+    map.on('click', (e) => {
+        const isInsideOrangeGrovesLayer = map.queryRenderedFeatures(e.point, { layers: ['jafffa-orange-groves'] }).length > 0;
+        if (!isInsideOrangeGrovesLayer) {
+            hideGlowingTextBox();
+        }
+    });
+
+    // document.addEventListener('click', (e) => {
+    //     hideGlowingTextBox();
+    // });
+
     insetMap.on("load", function() {
         var insetCanvas = document.getElementById('insetCanvas')
         var insetContext = insetCanvas.getContext('2d');
@@ -701,6 +802,10 @@ window.addEventListener('scroll', function() {
         mapContainer.style.position = 'relative'; // Reset position to default
     }
 });
+
+const mapElement = document.getElementById('map');
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const markers = document.querySelectorAll(".timeline-marker");
