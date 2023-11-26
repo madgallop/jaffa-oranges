@@ -496,16 +496,9 @@ map.on("load", function() {
 
         // Capture the inset map onto the canvas
         insetContext.drawImage(insetMap.getCanvas(), 0, 0)
-
-        // Convert the canvas to a data URL
-        // var imgURL = insetCanvas.toDataURL('image/png');
-
-        // // Create an image element and set its source to the data URL
-        // var img = document.createElement('img');
-        // img.src = imgURL;
-        // img.id = 'inset-map-image';
-        // document.querySelector('.inset-map').appendChild(img);
     });
+
+    circleOutlines = []
 
     // setup the instance, pass callback functions
     scroller
@@ -516,18 +509,30 @@ map.on("load", function() {
     })
     
     .onStepEnter(async response => {
-        var initialCircleRadius = 2; // Initial radius in kilometers
-        var currentCircleRadius = initialCircleRadius;
-        var maxRadiusChange = 8; // Maximum change in radius
-
-        var center = turf.point([34.71250, 32.07967]);
+        var chapterRadii = [1.3, 4, 2.125]
+        var center = turf.point([34.71250, 32.0686]);
         var options = {
         steps: 80,
         units: 'kilometers'
         };
+        var circle = turf.circle(center, chapterRadii[0], options);
 
-        var circle = turf.circle(center, initialCircleRadius, options);
-        document.getElementById("exposition").classList.add("exposition-hidden");
+        var current_chapter = config.chapters.findIndex(chap => chap.id === response.element.id);
+        var chapter = config.chapters[current_chapter];
+        var newRadius = chapterRadii[current_chapter];
+
+        document.querySelectorAll('.timeline-marker').forEach(marker => {
+            marker.classList.remove('active-timeline-marker');
+        });
+
+        // Add active class to the corresponding timeline marker
+        var currentTimelineMarker = document.querySelector(`.timeline-marker[data-chapter="${current_chapter}"]`);
+        if (currentTimelineMarker) {
+            currentTimelineMarker.classList.add('active-timeline-marker');
+        }
+
+
+        // document.getElementById("exposition").classList.add("exposition-hidden");
 
         map.addLayer({
             "id": "circle-fill",
@@ -542,50 +547,80 @@ map.on("load", function() {
             }
         });
 
-        map.addLayer({
-            "id": "circle-outline",
-            "type": "line",
-            "source": {
-                "type": "geojson",
-                "data": circle
-            },
-            "paint": {
-                "line-color": "#9DA47F",
-                "line-opacity": 0.5,
-                "line-width": 3,
-            }
-        });
+        // map.addLayer({
+        //     "id": "circle-outline",
+        //     "type": "line",
+        //     "source": {
+        //         "type": "geojson",
+        //         "data": circle
+        //     },
+        //     "paint": {
+        //         "line-color": "#9DA47F",
+        //         "line-opacity": 0.5,
+        //         "line-width": 3,
+        //     }
+        // });
 
         var circleFillLayer = map.getLayer("circle-fill");
         var circleOutlineLayer = map.getLayer("circle-outline");
 
-        // Function to update the circle's radius
-        function updateCircleRadius(radius) {
-            currentCircleRadius = radius;
-            var newCircle = turf.circle(center, currentCircleRadius, options);
+        // Inside the updateCircleRadiusAndStoreOutline function
+        function updateCircleRadiusAndStoreOutline(radius) {
+            var newCircle = turf.circle(center, radius, options);
             map.getSource("circle-fill").setData(newCircle);
-            map.getSource("circle-outline").setData(newCircle);
+            circleOutlines.push(newCircle);
+
+            circleOutlines.forEach((outline, index) => {
+                var isActiveChapter = config.chapters[index].id === response.element.id;
+                var lineOpacity = isActiveChapter ? 1 : 0.3; // Set opacity for inactive chapters
+
+                var lineDashArray = isActiveChapter ? undefined : [5, 3]; // Set line dash for inactive chapters
+
+                var layerId = 'circle-outline-' + index;
+                var existingLayer = map.getLayer(layerId);
+
+                // Check if the layer already exists and remove it before re-adding
+                if (existingLayer) {
+                    map.removeLayer(layerId);
+                    map.removeSource(layerId);
+                }
+
+                // Ensure line dash array and opacity are properly handled based on their values
+                var paintProperties = {
+                    'line-color': '#9DA47F',
+                    'line-opacity': lineOpacity, // Set opacity here
+                    'line-width': isActiveChapter ? 3 : 3 * 0.5 // Set width for inactive chapters, reducing it to 75%
+
+                };
+
+                if (lineDashArray) {
+                    paintProperties['line-dasharray'] = lineDashArray;
+                }
+
+                map.addLayer({
+                    'id': layerId,
+                    'type': 'line',
+                    'source': {
+                        'type': 'geojson',
+                        'data': outline
+                    },
+                    'paint': paintProperties // Assign the paint properties
+                });
+            });
         }
-        var current_chapter = config.chapters.findIndex(chap => chap.id === response.element.id);
 
-        document.querySelectorAll('.timeline-marker').forEach(marker => {
-            marker.classList.remove('active-timeline-marker');
-        });
 
-        // Add active class to the corresponding timeline marker
-        var currentTimelineMarker = document.querySelector(`.timeline-marker[data-chapter="${current_chapter}"]`);
-        if (currentTimelineMarker) {
-            currentTimelineMarker.classList.add('active-timeline-marker');
-        }
 
-        var chapter = config.chapters[current_chapter];
+
+
+        updateCircleRadiusAndStoreOutline(newRadius);
+
 
         response.element.classList.add('active');
         map[chapter.mapAnimation || 'flyTo'](chapter.location);
 
         // Update the circle radius based on the chapter
-        var newRadius = initialCircleRadius + (current_chapter * 2); // Adjust the increment as needed
-        updateCircleRadius(newRadius);
+
 
         if (chapter.onChapterEnter.length > 0) {
             chapter.onChapterEnter.forEach(setLayerOpacity);
