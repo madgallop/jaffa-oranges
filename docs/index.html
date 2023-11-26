@@ -202,13 +202,14 @@
         }
         #insetCanvas {
             position: absolute;
-            top: 65vh;
-            left: 8vh; 
+            top: 60vh;
+            left: 6vh; 
             height: auto;
-            width: 180px;
+            width: 230px;
             border: 1px solid #ccc;
             float:right;
-            opacity: 90%;
+            opacity: 0.9;
+            image-rendering: optimizeSpeed; /* Optimize rendering speed */
         }
         .inset-map {
             width: 100%; /* Set width to 100% */
@@ -490,6 +491,10 @@ map.on("load", function() {
     insetMap.on("load", function() {
         var insetCanvas = document.getElementById('insetCanvas')
         var insetContext = insetCanvas.getContext('2d');
+        if (insetContext) {
+            insetContext.willReadFrequently = true;
+        }
+
         var insetMapCanvas = insetMap.getCanvas();
         insetCanvas.width = insetMapCanvas.width;
         insetCanvas.height = insetMapCanvas.height;
