@@ -6,7 +6,6 @@
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/mapbox/assembly/publisher-staging/src/svgs/mapbox.svg">
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;800&display=swap" rel="stylesheet">
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Besley:wght@500&display=swap" rel="stylesheet"> -->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
     <script src="https://unpkg.com/intersection-observer@0.12.0/intersection-observer.js"></script>
@@ -103,6 +102,16 @@
             font-family: 'EB+Garamond', serif;
             font-weight: lighter;
             background-color:#e7c094d7;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            }
+            to {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.9), 0 0 40px rgba(255, 255, 255, 0.9);
+            }
         }
         /* Font for chapters */
         .step h3 {
@@ -203,9 +212,9 @@
         #insetCanvas {
             position: absolute;
             top: 60vh;
-            left: 6vh; 
+            left: 3vh; 
             height: auto;
-            width: 230px;
+            width: 250px;
             border: 1px solid #ccc;
             float:right;
             opacity: 0.9;
@@ -248,6 +257,7 @@
         }
         #glowingTextBox {
             position: fixed;
+            max-width: 15%;
             top: 100px; /* Adjust the top position */
             right: 1vw; /* Adjust the position based on screen width */
             z-index: 9999;
@@ -260,6 +270,7 @@
             text-align: center;
             font-size: 12px;
             font-family: 'Avenir', sans-serif;
+            font-weight: 50;
             color: rgb(119, 118, 118);
             /* Other styles */
         }
@@ -532,13 +543,13 @@ map.on("load", function() {
             // Set different text content based on the current chapter index
             switch (currentChapterIndex) {
                 case 0:
-                    currentContent = 'Text for chapter 1';
+                    currentContent = 'No one doubts that Jaffa is the greatest Arab city in Palestine, and it is inevitable that visitors to Palestine will stop by to see the model of Palestine’s cities.  The Arabs were the majority. The gateway to Palestine. The land of oranges - the oranges that, as according to a peasant who used to cultivate them until he left, would shrivel up if a change occurred. Every area of Palestine exported oranges branded Jaffa orange. The Arabs, both Muslim and Christian, planted oranges. I remember when we exported citrus, we’d watch them wrap oranges in paper and put them in boxes for export. They are real Jaffas, being gathered in the groves of Palestine. Mother of strangers. Bride of Palestine. the inhabitants of Jaffa in general believed -- like most of their fellow Palestinians throughout the land -- that the Palestinian was braver than the Jew and more capable of standing hardship. Surrounding Jaffa are the orange gardens for which it is justly extolled, and which are a considerable source of wealth.';
                     break;
                 case 1:
-                    currentContent = 'Text for chapter 2';
+                    currentContent = 'Jaffa is a special model for coexistence between Muslims, Jews, and Christians. The cultivation of the orange, introduced by the Arabs before the commencement of Jewish settlement, has developed to a very great extent in consequence of that settlement. We have deep connections and relations with Jewish people. A meeting place for all three, a special place. Jews and Arabs refused to be enemies. We worked together. A mixed city. Origin of orange cultivation. There is no doubt that the pitch of perfection to which the technique of plantation and cultivation of the orange and grapefruit have been brought in Palestine is due to the scientific methods of the Jewish agriculturist. Best Jaffa Oranges. The British built Faisel Street for carrying fruit Jaffa  Buy only totseret ha-arets! Citrus rush. The task of maintaining a fair balance between these elements and, at the same time, faithfully observing the spirit and letter of the Mandate is one of peculiar delicacy.  Jews and Arabs worked side by side.';
                     break;
                 case 2:
-                    currentContent = 'Text for chapter 3';
+                    currentContent = 'We were made to believe that the future of Israeli agriculture lays in our hands. One bad orange will not just spoil the whole crate, but imperil our reputation as the best orange growers in the world.  The servers came out carrying large baskets and handed every one of us an orange with a tiny green sticker that read “Jaffa.” As I put an orange segment in my mouth, I knew that I wasn’t just having my first taste of Israel, but was ingesting a Zionist symbol. The next day, on our El Al flight to Tel Aviv, female flight attendants wore bright orange skirts, orange striped tops, and funny orange colored hats. Someone explained to us that their unusual uniforms were an homage to Jaffa oranges. While the orange became the symbol of the Zionist enterprise and the state of Israel, for Palestinians it symbolizes the loss of their homeland and its destruction. A world destroyed. The break with the past must be absolute. Whoever could leave has left, there is fear everywhere, there is no safety.';
                     break;
                 default:
                     currentContent = '';
