@@ -168,13 +168,16 @@ var config = {
                 {
                     layer: 'jaffa_building_footprints',
                     //filter:                  
-                    opacity: 1,
-                    //duration: 5000,
+                    opacity: 1, // Start with 0 opacity
+                    duration: 5000, // Duration of 1 second (in milliseconds) for fade-in
+                    easing: 'ease-in' // Use the ease timing function for a smoother transition
                 }
+                    //duration: 5000,
             ],
             onChapterExit: [
                 {
                     layer: 'jaffa_building_footprints',
+                    visibility: 'none', // Remove the layer immediately
                     opacity: 0
                 }
             ]
