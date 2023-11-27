@@ -185,6 +185,22 @@
             margin: 10px 25px;
             z-index: 0; /* Place the line behind markers */
         }
+        .timeline-marker:nth-child(1) {
+            left: 0%;
+        }
+
+        .timeline-marker:nth-child(2) {
+            left: 40%;
+        }
+
+        .timeline-marker:nth-child(3) {
+            left: 65%;
+        }
+
+        .timeline-marker:nth-child(4) {
+            left: 100%;
+        }
+        
         #scale-bar {
             position: fixed;
             bottom: 0;            
@@ -381,6 +397,11 @@
     <div class="timeline-marker" data-chapter="2">
         <div class="text-container">
             <p id="chapter-1-text">Israeli Period</p>
+        </div>
+    </div>
+    <div class="timeline-marker" data-chapter="3">
+        <div class="text-container">
+            <p id="chapter-1-text">Destruction</p>
         </div>
     </div>
     <div class="timeline-line"></div>
