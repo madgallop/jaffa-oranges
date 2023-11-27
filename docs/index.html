@@ -76,7 +76,7 @@
             color: rgb(119, 118, 118);
             max-width: 30vh;
             position: absolute;
-            top: 20vh;
+            top: 16vh;
             left: 5vh;
             padding: 8vh 7vw; /* Adjust the padding as needed */
             max-width: 50vh; /* Set the maximum width to 50% */
@@ -211,7 +211,7 @@
         }
         #insetCanvas {
             position: absolute;
-            top: 64vh;
+            top: 66vh;
             left: 3vh; 
             height: auto;
             width: 280px;
@@ -658,7 +658,7 @@ map.on("load", function() {
         var chapterOutlines = {}; // Object to store chapter outlines
 
         function updateCircleRadiusAndStoreOutline(radius, response) {
-            var center = turf.point([34.71000, 32.0686]);
+            var center = turf.point([34.71060, 32.0686]);
             var options = {
                 steps: 80,
                 units: 'kilometers'
