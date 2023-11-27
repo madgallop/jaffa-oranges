@@ -142,10 +142,10 @@ var config = {
                 }
             ],
             onChapterExit: [
-                {
-                    layer: 'jafffa-orange-groves',
-                    opacity: 0
-                }
+                // {
+                //     layer: 'jafffa-orange-groves',
+                //     opacity: 0
+                // }
             ]
         },
         {
@@ -165,6 +165,10 @@ var config = {
             rotateAnimation: false,
             callback: '',
             onChapterEnter: [
+                {
+                    layer: 'jafffa-orange-groves',
+                    opacity: 0
+                },
                 {
                     layer: 'jaffa_building_footprints',
                     //filter:                  
