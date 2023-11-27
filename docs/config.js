@@ -107,7 +107,7 @@ var config = {
             id: 'third-identifier',
             alignment: 'left',
             hidden: false,
-            title: 'In the Israeli ownership era, from the 1950s to the 1970s, the orange industry saw a shift towards total Israeli control. The Jaffa port closed in 1969 and exports dropped.',
+            title: "After Israel’s establishment, Zionist militias forcibly expelled the majority of Jaffa’s Arab residents during the Nakba (Catastrophe) of 1948, leaving only a fraction of the original population—4,000 to 5,000 out of 70,000. The State of Israel took control of abandoned orange groves left by fleeing Palestinians, considering them 'abandoned assets,' as well as groves belonging to Palestinians who remained in Jaffa. Israel aimed to revive the industry and by the early 1970s, exported approximately 1 million tons annually. But despite rebranding the Jaffa orange as a symbol of idyllic kibbutz life, celebrated in various advertisements and art forms, exports remained a mere fraction of the collaborative interwar period.\n\nAs Tel Aviv expanded, citrus groves moved farther from Jaffa, marking a significant departure from the once-thriving, cooperative industry. The symbolism of the Jaffa orange shifted—from initially representing Palestinian land to signifying Jewish-Arab collaboration to ultimately becoming a symbol of displacement and dispossession for Palestinians.",
             //image: './path/to/image/source.png',
             //description: 'Copy these sections to add to your story.',
             location: {
@@ -152,7 +152,7 @@ var config = {
             id: 'fourth-chapter',
             alignment: 'left',
             hidden: false,
-            title: 'Destruction',
+            title: "In 1965, Jaffa’s historic port closed permanently, and Israel reconstructed the devastated area, shaping it as a 'traditional' and 'historic' corner of Tel Aviv. By the 1980s, Israel's citrus industry entered its final decline. Escalating real estate values drove farmers to sell their groves, while a shift away from agriculture toward urbanization curtailed productivity. Concurrently, the iconic Jaffa orange grappled with intense competition and restrictive trade agreements. But ultimately, Israeli urbanization wiped out the last of Jaffa’s symbolic orange groves, marking the final blow to an industry once deeply rooted in the region's identity.",
             //image: './path/to/image/source.png',
             //description: 'Copy these sections to add to your story.',
             location: {
