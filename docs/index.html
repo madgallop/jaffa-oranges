@@ -66,7 +66,7 @@
             top: 0;
             left: 20.5%;
             padding: 2vh 1vw; /* Adjust the padding as needed */
-            font-size: 20px; /* Adjust the font size as needed */
+            font-size: 22px; /* Adjust the font size as needed */
             text-align: center;
             font-weight: bold;
             font-family: 'EB+Garamond', serif;
@@ -81,7 +81,7 @@
             padding: 8vh 7vw; /* Adjust the padding as needed */
             max-width: 50vh; /* Set the maximum width to 50% */
             margin: 0 auto; /* Center the element horizontally */
-            font-size: 15px; /* Adjust the font size as needed */
+            font-size: 17px; /* Adjust the font size as needed */
             text-align: center;
             float:left;
             font-family: 'EB+Garamond', serif; /* Use correct font name */
@@ -96,7 +96,7 @@
             color: rgb(119, 118, 118);
             max-width: 30vh;
             padding: 5vh 8vw;
-            font-size: 14px; /* Adjust the font size as needed */
+            font-size: 16px; /* Adjust the font size as needed */
             text-align: center;
             float: right;
             font-family: 'EB+Garamond', serif;
@@ -121,7 +121,7 @@
             margin: 0;
             padding: 0.5vh 0.2vw; /* Adjust the padding as needed */
             text-align: left;
-            font-size: 12px;
+            font-size: 15px;
             width: 50%; /* Set the width to 50% */
             text-align: left;
             letter-spacing: 0px; 
@@ -151,7 +151,7 @@
             border-radius: 50vw;
             cursor: pointer;
             text-align: center;
-            font-size: 13px;
+            font-size: 15px;
             font-family: 'EB+Garamond', serif;
             color: rgb(119, 118, 118);
             display: flex;
@@ -214,7 +214,7 @@
             top: 60vh;
             left: 3vh; 
             height: auto;
-            width: 250px;
+            width: 350px;
             border: 1px solid #ccc;
             float:right;
             opacity: 0.9;
@@ -257,18 +257,18 @@
         }
         #glowingTextBox {
             position: fixed;
-            max-width: 15%;
-            top: 100px; /* Adjust the top position */
+            max-width: 13%;
+            top: 150px; /* Adjust the top position */
             right: 1vw; /* Adjust the position based on screen width */
             z-index: 9999;
             padding: 10px;
-            background-color: rgba(255, 255, 255, 0.682);
+            background-color: rgba(246, 243, 238, 0.761);
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             opacity: 0;
             pointer-events: none;
             text-align: center;
-            font-size: 12px;
+            font-size: 14px;
             font-family: 'Avenir', sans-serif;
             font-weight: 50;
             color: rgb(119, 118, 118);
@@ -327,7 +327,7 @@
         .step div {
             padding:  25px 0px;
             line-height: 25px;
-            font-size: 13px;
+            font-size: 15px;
         }
 
         .step img {
@@ -658,7 +658,7 @@ map.on("load", function() {
         var chapterOutlines = {}; // Object to store chapter outlines
 
         function updateCircleRadiusAndStoreOutline(radius, response) {
-            var center = turf.point([34.71250, 32.0686]);
+            var center = turf.point([34.71050, 32.0686]);
             var options = {
                 steps: 80,
                 units: 'kilometers'
