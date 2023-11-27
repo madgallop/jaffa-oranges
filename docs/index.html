@@ -214,7 +214,7 @@
             top: 60vh;
             left: 3vh; 
             height: auto;
-            width: 350px;
+            width: 270px;
             border: 1px solid #ccc;
             float:right;
             opacity: 0.9;
@@ -357,7 +357,7 @@
         <h1 class="h1-text">THE PERFECT BITE:<br> COLLABORATION AND DISPOSSESSION IN JAFFA, PALESTINE</h1>
         <p class="p1-text">The Jaffa orange is a powerful and contested symbol of identity. Originating in Jaffa, historically known as the 'gateway to Palestine,' the Shamouti orange emerged from the labor and innovation of Palestinian farmers during the mid-19th century. This unusually thick and nearly seedless fruit became synonymous with Jaffa's production and export. Its narrative mirrors the tumultuous history of the land itself. The story of Jaffa's dispossession—of industry, land, and of identity—resonates with the plight of dozens of Palestinian towns. Once a symbol of Palestinian prowess and pride in cultivation, the orange now embodies loss and estrangement. <br><br>The map below explores the story of cultivation, collaboration, and loss in Palestine through focusing on the Jaffa orange industry, from its inception to its eventual decline in the late 20th century.</p>
         <canvas id="insetCanvas"></canvas>
-        <p class="p3-text"> Scroll through time or select on of the three defining periods of the Jaffa orange on the timeline below.<br><br><i>Note: circle radius = total area of Jaffa orange groves/total boxes of Jaffa oranges exported.</i></p>
+        <p class="p3-text">Scroll to view the story or click one of the defining periods on the timeline below.<br><br>Click on an orange grove to access primary source commentary specific to that period. Click again to hide the details.<br><br><i>Circle radii visually depict the proportion of acres dedicated to Jaffa orange groves in relation to the total boxes of Jaffa oranges exported for a given year.<br><br>Green text represents the portion of land owned by Palestinians, while blue text indicates the portion under Jewish/Israeli ownership.</i></p>
     </div>
 </div>
 <div id="glowingTextBox" class="glow-hidden"></div>
@@ -658,7 +658,7 @@ map.on("load", function() {
         var chapterOutlines = {}; // Object to store chapter outlines
 
         function updateCircleRadiusAndStoreOutline(radius, response) {
-            var center = turf.point([34.71050, 32.0686]);
+            var center = turf.point([34.71000, 32.0686]);
             var options = {
                 steps: 80,
                 units: 'kilometers'
