@@ -225,32 +225,6 @@
             pointer-events: none;
             display: none;
         }
-        #insetCanvas {
-            position: absolute;
-            top: 68vh;
-            left: 3vh; 
-            height: auto;
-            width: 300px;
-            border: 1px solid #ccc;
-            float:right;
-            opacity: 0.9;
-            image-rendering: optimizeSpeed; /* Optimize rendering speed */
-        }
-        .inset-map {
-            width: 100%; /* Set width to 100% */
-            text-align: right; /* Center the image horizontally */
-            padding: 20px; /* Add padding as needed */
-            float:right;
-        }
-        #inset-map-image {
-            max-width: 100%; /* Ensure the image doesn't exceed its container */
-            max-height: 100%; /* Ensure the image doesn't exceed its container */
-            width: auto; /* Allow the image to adjust its width */
-            height: auto; /* Allow the image to adjust its height */
-            border: 1px solid #ccc; /* Optional: Add border for visibility */
-            float: right;
-        /* You can adjust other styles as needed */
-        }
 
         /* #mapInset .mapboxgl-ctrl-bottom-left{
             display: none;
@@ -372,7 +346,6 @@
     <div class="title-text">
         <h1 class="h1-text">THE PERFECT BITE:<br> COLLABORATION AND DISPOSSESSION IN JAFFA, PALESTINE</h1>
         <p class="p1-text">The Jaffa orange is a powerful and contested symbol of identity. Originating in Jaffa, historically known as the 'gateway to Palestine,' the Shamouti orange emerged from the labor and innovation of Palestinian farmers during the mid-19th century. This unusually thick and nearly seedless fruit became synonymous with Jaffa's production and export. Its narrative mirrors the tumultuous history of the land itself. The story of Jaffa's dispossession—of industry, land, and of identity—resonates with the plight of dozens of Palestinian towns. Once a symbol of Palestinian prowess and pride in cultivation, the orange now embodies loss and estrangement. <br><br>The map below explores the story of cultivation, collaboration, and loss in Palestine through focusing on the Jaffa orange industry, from its inception to its eventual decline in the late 20th century.</p>
-        <canvas id="insetCanvas"></canvas>
         <p class="p3-text">Scroll to view the story or click one of the defining periods on the timeline below.<br><br>Click on an orange grove to access primary source commentary specific to that period. Click again to hide the details.<br><br><i>Circle radii visually depict the proportion of acres dedicated to Jaffa orange groves in relation to the total boxes of Jaffa oranges exported for a given year.<br><br>Green text represents the portion of land owned by Palestinians, while blue text indicates the portion under Jewish/Israeli ownership.</i></p>
     </div>
 </div>
@@ -527,25 +500,6 @@ var map = new mapboxgl.Map({
     projection: config.projection
 });
 
-// Create a inset map if enabled in config.js
-if (config.inset) {
- var insetMap = new mapboxgl.Map({
-    container: 'mapInset', // container id
-    style: 'mapbox://styles/madgallop/clpekqaqe006801p79o6x0yic', //hosted style id
-    center: config.chapters[0].location.center,
-    // Hardcode above center value if you want insetMap to be static.
-    zoom: 5.5, // starting zoom
-    hash: false,
-    interactive: false,
-    attributionControl: false
-  });
-}
-
-// map.addSource('buildings_good_zoom_new-brvtke', {
-//             type: "vector",
-//             "url": "mapbox://madgallop.btzluc5i" // Your tileset URL
-//         });
-
 
 // instantiate the scrollama
 var scroller = scrollama();
@@ -622,26 +576,10 @@ map.on("load", function() {
         }
     });
 
-    // document.addEventListener('click', (e) => {
-    //     hideGlowingTextBox();
-    // });
-
-    insetMap.on("load", function() {
-        var insetCanvas = document.getElementById('insetCanvas')
-        var insetContext = insetCanvas.getContext('2d');
-        if (insetContext) {
-            insetContext.willReadFrequently = true;
-        }
-
-        var insetMapCanvas = insetMap.getCanvas();
-        insetCanvas.width = insetMapCanvas.width;
-        insetCanvas.height = insetMapCanvas.height;
-
-        // Capture the inset map onto the canvas
-        insetContext.drawImage(insetMap.getCanvas(), 0, 0)
-    });
 
     // setup the instance, pass callback functions
+    circleOutlines = []
+
     scroller
     .setup({
         step: '.step',
@@ -650,7 +588,7 @@ map.on("load", function() {
     })
     
     .onStepEnter(async response => {
-        var chapterRadii = [1.8, 4.5, 2.625, 0]
+        var chapterRadii = [0, 1.8, 4.5, 2.625, 0]
         var center = turf.point([34.71250, 32.0686]);
         var options = {
         steps: 80,
@@ -705,30 +643,27 @@ map.on("load", function() {
             });
 
             map.getSource("circle-fill").setData(newCircle);
-
-            // Store the outline based on chapter ID
-            chapterOutlines[response.element.id] = newCircle;
-
-            // Loop through stored outlines to manage display and removal
-            Object.keys(chapterOutlines).forEach((chapterId, index) => {
-                var outline = chapterOutlines[chapterId];
-                var isActiveChapter = chapterId === response.element.id;
-                
-                var lineOpacity = isActiveChapter ? 1 : 0.3;
-                var lineDashArray = isActiveChapter ? undefined : [5, 3];
+            circleOutlines.push(newCircle);
+            circleOutlines.forEach((outline, index) => {
+                var isActiveChapter = config.chapters[index].id === response.element.id;
+                var lineOpacity = isActiveChapter ? 1 : 0.3; // Set opacity for inactive chapters
+                var lineDashArray = isActiveChapter ? undefined : [5, 3]; // Set line dash for inactive chapters
 
                 var layerId = 'circle-outline-' + index;
                 var existingLayer = map.getLayer(layerId);
 
+                // Check if the layer already exists and remove it before re-adding
                 if (existingLayer) {
                     map.removeLayer(layerId);
                     map.removeSource(layerId);
                 }
 
+                // Ensure line dash array and opacity are properly handled based on their values
                 var paintProperties = {
                     'line-color': '#9DA47F',
-                    'line-opacity': lineOpacity,
-                    'line-width': isActiveChapter ? 3 : 3 * 0.5
+                    'line-opacity': lineOpacity, // Set opacity here
+                    'line-width': isActiveChapter ? 3 : 3 * 0.5 // Set width for inactive chapters, reducing it to 75%
+
                 };
 
                 if (lineDashArray) {
@@ -742,16 +677,10 @@ map.on("load", function() {
                         'type': 'geojson',
                         'data': outline
                     },
-                    'paint': paintProperties
+                    'paint': paintProperties // Assign the paint properties
                 });
-                
-                // Remove inactive chapter outlines from the stored object and the map
-                if (!isActiveChapter) {
-                    delete chapterOutlines[chapterId];
+                });
                 }
-            });
-        }
-
 
         const responseObj = {
             element: {
