@@ -34,6 +34,7 @@ var config = {
             onChapterEnter: [
                 {
                     layer: 'jafffa-orange-groves',
+                    type: 'fill',
                     //filter: 
                     opacity: [
                         "match",
@@ -47,6 +48,36 @@ var config = {
                         0
                     ],
                     //duration: 5000,
+                },
+                {
+                    layer: 'jafffa-orange-circle-fills',
+                    type: 'fill',
+                    opacity: [
+                        "match",
+                        ["get", "year"],
+                        ["1918"],
+                        1,
+                        ["1943"],
+                        0,
+                        ["1958"],
+                        0,
+                        0
+                    ]
+                },
+                {
+                    layer: 'jafffa-orange-circle-fills',
+                    type: 'fill',
+                    opacity: [
+                        "match",
+                        ["get", "year"],
+                        ["1918"],
+                        1,
+                        ["1943"],
+                        0,
+                        ["1958"],
+                        0,
+                        0
+                    ]
                 }
             ],
             onChapterExit: [
@@ -71,6 +102,7 @@ var config = {
             onChapterEnter: [
                 {
                     layer: 'jafffa-orange-groves',
+                    type: 'fill',
                     //filter: 
                     opacity: [
                         "match",
@@ -114,6 +146,7 @@ var config = {
             onChapterEnter: [
                 {
                     layer: 'jafffa-orange-groves',
+                    type: 'fill',
                     //filter:                  
                     opacity: [
                         "match",
@@ -150,6 +183,7 @@ var config = {
             onChapterEnter: [
                 {
                     layer: 'jafffa-orange-groves',
+                    type: 'fill',
                     //filter:                  
                     opacity: [
                         "match",
@@ -166,6 +200,7 @@ var config = {
                 },
                 {
                     layer: 'jaffa_building_footprints',
+                    type: 'fill',
                     //filter:                  
                     opacity: 0, // Start with 0 opacity
                     duration: 0, // Duration of 1 second (in milliseconds) for fade-in
@@ -192,6 +227,7 @@ var config = {
             onChapterEnter: [
                 {
                     layer: 'jafffa-orange-groves',
+                    type: 'fill',
                     //filter:                  
                     opacity: [
                         "match",
@@ -208,6 +244,7 @@ var config = {
                 },
                 {
                     layer: 'jaffa_building_footprints',
+                    type: 'fill',
                     //filter:                  
                     opacity: 1, // Start with 0 opacity
                     duration: 2000, // Duration of 1 second (in milliseconds) for fade-in

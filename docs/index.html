@@ -507,23 +507,22 @@ var scroller = scrollama();
 map.on("load", function() {
     const glowingTextBox = document.getElementById('glowingTextBox');
 
-
     let currentContent = ''; // Variable to store the current text content
 
     // Function to show the glowing text box
     function showGlowingTextBox(coordinates, currentChapterIndex) {
         if (glowingTextBox) {
-            console.log("showing");
+            // console.log("showing");
 
             // Set different text content based on the current chapter index
             switch (currentChapterIndex) {
-                case 0:
+                case 1:
                     currentContent = 'No one doubts that Jaffa is the greatest Arab city in Palestine, and it is inevitable that visitors to Palestine will stop by to see the model of Palestine’s cities.  The Arabs were the majority. The gateway to Palestine. The land of oranges - the oranges that, as according to a peasant who used to cultivate them until he left, would shrivel up if a change occurred. Every area of Palestine exported oranges branded Jaffa orange. The Arabs, both Muslim and Christian, planted oranges. I remember when we exported citrus, we’d watch them wrap oranges in paper and put them in boxes for export. They are real Jaffas, being gathered in the groves of Palestine. Mother of strangers. Bride of Palestine. the inhabitants of Jaffa in general believed -- like most of their fellow Palestinians throughout the land -- that the Palestinian was braver than the Jew and more capable of standing hardship. Surrounding Jaffa are the orange gardens for which it is justly extolled, and which are a considerable source of wealth.';
                     break;
-                case 1:
+                case 2:
                     currentContent = 'Jaffa is a special model for coexistence between Muslims, Jews, and Christians. The cultivation of the orange, introduced by the Arabs before the commencement of Jewish settlement, has developed to a very great extent in consequence of that settlement. We have deep connections and relations with Jewish people. A meeting place for all three, a special place. Jews and Arabs refused to be enemies. We worked together. A mixed city. Origin of orange cultivation. There is no doubt that the pitch of perfection to which the technique of plantation and cultivation of the orange and grapefruit have been brought in Palestine is due to the scientific methods of the Jewish agriculturist. Best Jaffa Oranges. The British built Faisel Street for carrying fruit Jaffa  Buy only totseret ha-arets! Citrus rush. The task of maintaining a fair balance between these elements and, at the same time, faithfully observing the spirit and letter of the Mandate is one of peculiar delicacy.  Jews and Arabs worked side by side.';
                     break;
-                case 2:
+                case 3:
                     currentContent = 'We were made to believe that the future of Israeli agriculture lays in our hands. One bad orange will not just spoil the whole crate, but imperil our reputation as the best orange growers in the world.  The servers came out carrying large baskets and handed every one of us an orange with a tiny green sticker that read “Jaffa.” As I put an orange segment in my mouth, I knew that I wasn’t just having my first taste of Israel, but was ingesting a Zionist symbol. The next day, on our El Al flight to Tel Aviv, female flight attendants wore bright orange skirts, orange striped tops, and funny orange colored hats. Someone explained to us that their unusual uniforms were an homage to Jaffa oranges. While the orange became the symbol of the Zionist enterprise and the state of Israel, for Palestinians it symbolizes the loss of their homeland and its destruction. A world destroyed. The break with the past must be absolute. Whoever could leave has left, there is fear everywhere, there is no safety.';
                     break;
                 default:
@@ -552,7 +551,7 @@ map.on("load", function() {
     // Function to hide the glowing text box
     function hideGlowingTextBox() {
         if (glowingTextBox) {
-            console.log("hiding");
+            // console.log("hiding");
             glowingTextBox.style.opacity = '0'; // Reduce opacity to hide the box
             glowingTextBox.style.pointerEvents = 'none'; // Disable interactions when hidden
         }
@@ -597,6 +596,8 @@ map.on("load", function() {
         var circle = turf.circle(center, chapterRadii[0], options);
 
         var current_chapter = config.chapters.findIndex(chap => chap.id === response.element.id);
+        // console.log(current_chapter)
+        // console.log(response.element.id)
         var chapter = config.chapters[current_chapter];
         var newRadius = chapterRadii[current_chapter];
 
@@ -643,9 +644,19 @@ map.on("load", function() {
             });
 
             map.getSource("circle-fill").setData(newCircle);
+            if (circleOutlines.length >4) {
+                circleOutlines.length =4
+            }
+
             circleOutlines.push(newCircle);
             circleOutlines.forEach((outline, index) => {
                 var isActiveChapter = config.chapters[index].id === response.element.id;
+
+                console.log(config.chapters[index].id)
+                console.log(response.element.id)
+                console.log(circleOutlines.length)
+                // console.log(chapterOutlines.length)
+
                 var lineOpacity = isActiveChapter ? 1 : 0.3; // Set opacity for inactive chapters
                 var lineDashArray = isActiveChapter ? undefined : [5, 3]; // Set line dash for inactive chapters
 
@@ -697,22 +708,6 @@ map.on("load", function() {
 
         // Update the circle radius based on the chapter
 
-
-        // if (config.chapters[index].id === 'fourth-chapter') {
-        //     // Add the building footprints layer
-        //     map.addLayer({
-        //         "id": "jaffa-building-footprints",
-        //         "type": "fill", // Assuming it's a fill layer
-        //         "source": 'buildings_good_zoom_new-brvtke',
-        //         "source-layer": " jaffa_building_footprints", // Specify your source layer name
-        //         "paint": {
-        //             "fill-color": "#000000",
-        //             "fill-opacity": 1 // Adjust opacity as needed
-        //             // Add other paint properties
-        //         }
-        //     });
-        // }
-        
         if (chapter.onChapterEnter.length > 0) {
             chapter.onChapterEnter.forEach(setLayerOpacity);
         }
@@ -728,10 +723,6 @@ map.on("load", function() {
     })
     
     .onStepExit(response => {
-        // if (response.element.id === 'fourth-chapter') {
-        //     // Remove the building footprints layer
-        //     map.removeLayer('jaffa-building-footprints');
-        // }
         var chapter = config.chapters.find(chap => chap.id === response.element.id);
         response.element.classList.remove('active');
         if (chapter.onChapterExit.length > 0) {
