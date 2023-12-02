@@ -357,22 +357,22 @@
     <span>1km</span>
 </div>
 <div id="timeline">
-    <div class="timeline-marker" data-chapter="0">
+    <div class="timeline-marker" data-chapter="1">
         <div class="text-container">
             <p id="chapter-1-text">Palestinian Period</p>
         </div>
     </div>
-    <div class="timeline-marker" data-chapter="1">
+    <div class="timeline-marker" data-chapter="2">
         <div class="text-container">
             <p id="chapter-1-text">Collaborative Period</p>
         </div>
     </div>
-    <div class="timeline-marker" data-chapter="2">
+    <div class="timeline-marker" data-chapter="3">
         <div class="text-container">
             <p id="chapter-1-text">Israeli Period</p>
         </div>
     </div>
-    <div class="timeline-marker" data-chapter="3">
+    <div class="timeline-marker" data-chapter="4">
         <div class="text-container">
             <p id="chapter-1-text">Decline</p>
         </div>
@@ -775,7 +775,7 @@ document.addEventListener("DOMContentLoaded", function () {
     markers.forEach((marker, index) => {
         marker.addEventListener("click", () => {
             // Scroll to the corresponding chapter
-            scrollToChapter(index);
+            scrollToChapter(index+1);
         });
     });
 

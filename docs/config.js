@@ -50,10 +50,6 @@ var config = {
                 }
             ],
             onChapterExit: [
-                // {
-                //     layer: 'jafffa-orange-groves',
-                //     opacity: 0
-                // }
             ]
         },
         {
@@ -91,10 +87,6 @@ var config = {
                 }
             ],
             onChapterExit: [
-                // {
-                //     layer: 'jafffa-orange-groves',
-                //     opacity: 0
-                // }
             ]
         },
         {
@@ -137,12 +129,7 @@ var config = {
                     //duration: 5000,
                 }
             ],
-            onChapterExit: [
-                // {
-                //     layer: 'jafffa-orange-groves',
-                //     opacity: 0
-                // }
-            ]
+            onChapterExit: []
         },
         {
             id: 'third-identifier',
@@ -179,15 +166,12 @@ var config = {
                 },
                 {
                     layer: 'jaffa_building_footprints',
-                    opacity: 0
+                    //filter:                  
+                    opacity: 0, // Start with 0 opacity
+                    duration: 0, // Duration of 1 second (in milliseconds) for fade-in
                 }
             ],
-            onChapterExit: [
-                // {
-                //     layer: 'jafffa-orange-groves',
-                //     opacity: 0
-                // }
-            ]
+            onChapterExit: []
         },
         {
             id: 'fourth-chapter',
@@ -208,24 +192,30 @@ var config = {
             onChapterEnter: [
                 {
                     layer: 'jafffa-orange-groves',
-                    opacity: 0
+                    //filter:                  
+                    opacity: [
+                        "match",
+                        ["get", "year"],
+                        ["1918"],
+                        0,
+                        ["1943"],
+                        0,
+                        ["1958"],
+                        0,
+                        0
+                    ],
+                    //duration: 5000,
                 },
                 {
                     layer: 'jaffa_building_footprints',
                     //filter:                  
                     opacity: 1, // Start with 0 opacity
-                    duration: 5000, // Duration of 1 second (in milliseconds) for fade-in
+                    duration: 2000, // Duration of 1 second (in milliseconds) for fade-in
                     easing: 'ease-in' // Use the ease timing function for a smoother transition
                 }
                     //duration: 5000,
             ],
-            onChapterExit: [
-                {
-                    layer: 'jaffa_building_footprints',
-                    visibility: 'none', // Remove the layer immediately
-                    opacity: 0
-                }
-            ]
+            onChapterExit: []
         }
     ]
 };
