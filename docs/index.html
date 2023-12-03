@@ -584,12 +584,18 @@ function displayMarkersForChapter(currentChapter) {
 
     // Logic to show popups based on the currentChapter
     if (currentChapter === "slug-style-id") {
-        const firstThreePlaces = placesData.features.filter(place => place.id === 1 || place.id === 2 || place.id === 3);
+        const firstThreePlaces = placesData.features.filter(place => place.id === 1 || place.id === 2 || place.id === 3 || place.id === 4 || place.id === 5 || place.id === 6);
         firstThreePlaces.forEach(place => {
             createPopUp(place);
         });
     } else if (currentChapter === "second-identifier") {
-        const lastThreePlaces = placesData.features.filter(place => place.id === 4 || place.id === 5 || place.id === 6);
+        const lastThreePlaces = placesData.features.filter(place => place.id === 7 || place.id === 8|| place.id === 9|| place.id === 10|| place.id === 11|| place.id === 12);
+        lastThreePlaces.forEach(place => {
+            createPopUp(place);
+        });
+    } 
+    else if (currentChapter === "third-identifier") {
+        const lastThreePlaces = placesData.features.filter(place => place.id === 13 || place.id === 14 || place.id === 15|| place.id === 16|| place.id === 17|| place.id === 18);
         lastThreePlaces.forEach(place => {
             createPopUp(place);
         });
@@ -620,7 +626,7 @@ map.on("load", function() {
         'id':1,
         'properties': {
         'description':
-        '<strong>1918</strong><p>"Test of the first thing!!"</p>',
+        '<p>Test of the first thing!!</p>',
         // 'icon': "none",
         },
         'geometry': {
@@ -633,7 +639,7 @@ map.on("load", function() {
         'id':2,
         'properties': {
         'description':
-        '<strong>1918</strong><p>"Test of the second thing!"</p>',
+        '<p>Test of the second thing!</p>',
         // 'icon': "none",
         },
         'geometry': {
@@ -646,7 +652,7 @@ map.on("load", function() {
         'id':3,
         'properties': {
         'description':
-        '<strong>1918</strong><p>"Test of the third thing!!"</p>',
+        '<p>Test of the third thing!!</p>',
         // 'icon': "none",
         },
         'geometry': {
@@ -659,7 +665,7 @@ map.on("load", function() {
         'id':4,
         'properties': {
         'description':
-        '<strong>1918</strong><p>"Test of the fourth thing!!"</p>',
+        '<p>Jewish and Arab Palestinian orange pickers in 1915</p><img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/1915Image.jpg" alt="Image Description" style="width: 100%; max-width: 200px;">',
         // 'icon': "none",
         },
         'geometry': {
@@ -672,7 +678,7 @@ map.on("load", function() {
         'id':5,
         'properties': {
         'description':
-        '<strong>1918</strong><p>"Test of the fifth thing!!"</p>',
+        '<p>Test of the fifth thing!!</p>',
         // 'icon': "none",
         },
         'geometry': {
@@ -682,17 +688,178 @@ map.on("load", function() {
         },
         {
         'type': 'Feature',
-        'id':5,
+        'id':6,
         'properties': {
         'description':
-        '<strong>1918</strong><p>"Test of the sixth thing!"</p>',
+        '<p>Orange exports in the late 19th century</p><img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/jaffaBoats.jpg" alt="Image Description" style="width: 100%; max-width: 200px;">',
         // 'icon': "none",
         },
         'geometry': {
         'type': 'Point',
         'coordinates': [34.708, 32.081]
         }
+        },
+
+        {
+        'type': 'Feature',
+        'id':7,
+        'properties': {
+        'description':
+        '<p>Test of the first thing!!</p>',
+        // 'icon': "none",
+        },
+        'geometry': {
+        'type': 'Point',
+        'coordinates': [34.793, 32.034]
         }
+        },
+        {
+        'type': 'Feature',
+        'id':8,
+        'properties': {
+        'description':
+        '<p>Test of the second thing!</p>',
+        // 'icon': "none",
+        },
+        'geometry': {
+        'type': 'Point',
+        'coordinates': [34.680, 32.053]
+        }
+        },
+        {
+        'type': 'Feature',
+        'id':9,
+        'properties': {
+        'description':
+        '<p>"est of the third thing!!</p>',
+        // 'icon': "none",
+        },
+        'geometry': {
+        'type': 'Point',
+        'coordinates': [34.758, 32.065]
+        }
+        },
+        {
+        'type': 'Feature',
+        'id':10,
+        'properties': {
+        'description':
+        '<p>Promotional ad for Jaffa oranges and juice, 1947</p><img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/1947CollabAdvertisement.jpg" alt="Image Description" style="width: 100%; max-width: 200px;">',
+        // 'icon': "none",
+        },
+        'geometry': {
+        'type': 'Point',
+        'coordinates': [34.734, 32.037]
+        }
+        },
+        {
+        'type': 'Feature',
+        'id':11,
+        'properties': {
+        'description':
+        '<p>Test of the fifth thing!!</p>',
+        // 'icon': "none",
+        },
+        'geometry': {
+        'type': 'Point',
+        'coordinates': [34.816, 32.075]
+        }
+        },
+        {
+        'type': 'Feature',
+        'id':12,
+        'properties': {
+        'description':
+        '<p>Announcement about orange box availability in 1947 edition of "Palestine."</p><img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/1947NewspaperArabicCollab.jpg" alt="Image Description" style="width: 100%; max-width: 200px;">',
+        // 'icon': "none",
+        },
+        'geometry': {
+        'type': 'Point',
+        'coordinates': [34.708, 32.081]
+        }
+        },
+
+
+
+        {
+        'type': 'Feature',
+        'id':13,
+        'properties': {
+        'description':
+        '<p>Test of the first thing!!</p>',
+        // 'icon': "none",
+        },
+        'geometry': {
+        'type': 'Point',
+        'coordinates': [34.793, 32.034]
+        }
+        },
+        {
+        'type': 'Feature',
+        'id':14,
+        'properties': {
+        'description':
+        '<p>Test of the second thing!</p>',
+        // 'icon': "none",
+        },
+        'geometry': {
+        'type': 'Point',
+        'coordinates': [34.680, 32.053]
+        }
+        },
+        {
+        'type': 'Feature',
+        'id':15,
+        'properties': {
+        'description':
+        '<p>Test of the third thing!!</p>',
+        // 'icon': "none",
+        },
+        'geometry': {
+        'type': 'Point',
+        'coordinates': [34.758, 32.065]
+        }
+        },
+        {
+        'type': 'Feature',
+        'id':16,
+        'properties': {
+        'description':
+        '<p>Jaffa orange fields before the Nakba</p><img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/1948PreNakbaGroves.jpg" alt="Image Description" style="width: 100%; max-width: 200px;">',
+        // 'icon': "none",
+        },
+        'geometry': {
+        'type': 'Point',
+        'coordinates': [34.734, 32.037]
+        }
+        },
+        {
+        'type': 'Feature',
+        'id':17,
+        'properties': {
+        'description':
+        '<p>Test of the fifth thing!!</p>',
+        // 'icon': "none",
+        },
+        'geometry': {
+        'type': 'Point',
+        'coordinates': [34.816, 32.075]
+        }
+        },
+        {
+        'type': 'Feature',
+        'id':18,
+        'properties': {
+        'description':
+        '<p>Orange exports in the late 19th century</p><img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/jaffaBoats.jpg" alt="Image Description" style="width: 100%; max-width: 200px;">',
+        // 'icon': "none",
+        },
+        'geometry': {
+        'type': 'Point',
+        'coordinates': [34.708, 32.081]
+        }
+        },
+
         ]
         }
     });
