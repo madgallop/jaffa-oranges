@@ -264,6 +264,17 @@
             color: rgb(119, 118, 118);
             /* Other styles */
         }
+        .close-button {
+            position: absolute;
+            top: 5px; /* Adjust the top position */
+            right: 5px; 
+            cursor: pointer;
+            font-size: 16px;
+            color: #555;
+        }
+        .close-button:hover {
+            color: #000;
+        }
         .glow-visible {
             opacity: 1; /* Make the box visible when this class is added */
             pointer-events: auto; /* Enable interactions when visible */
@@ -346,10 +357,12 @@
     <div class="title-text">
         <h1 class="h1-text">THE PERFECT BITE:<br> COLLABORATION AND DISPOSSESSION IN JAFFA, PALESTINE</h1>
         <p class="p1-text">The Jaffa orange is a powerful and contested symbol of identity. Originating in Jaffa, historically known as the 'gateway to Palestine,' the Shamouti orange emerged from the labor and innovation of Palestinian farmers during the mid-19th century. This unusually thick and nearly seedless fruit became synonymous with Jaffa's production and export. Its narrative mirrors the tumultuous history of the land itself. The story of Jaffa's dispossession—of industry, land, and of identity—resonates with the plight of dozens of Palestinian towns. Once a symbol of Palestinian prowess and pride in cultivation, the orange now embodies loss and estrangement. <br><br>The map below explores the story of cultivation, collaboration, and loss in Palestine through focusing on the Jaffa orange industry, from its inception to its eventual decline in the late 20th century.</p>
-        <p class="p3-text">Scroll to view the story or click one of the defining periods on the timeline below.<br><br>Click on an orange grove to access primary source commentary specific to that period. Click again to hide the details.<br><br><i>Circle radii visually depict the proportion of acres dedicated to Jaffa orange groves in relation to the total boxes of Jaffa oranges exported for a given year.<br><br>Green text represents the portion of land owned by Palestinians, while blue text indicates the portion under Jewish/Israeli ownership.</i></p>
+        <p class="p3-text">Scroll to view the story or click one of the defining periods on the timeline below.</p>
     </div>
 </div>
-<div id="glowingTextBox" class="glow-hidden"></div>
+<div id="glowingTextBox" class="glow-hidden">
+    <span class="close-button">&times;</span>
+</div>
 <div id="map-container">
     <div id="map"></div>
 </div>
@@ -547,6 +560,12 @@ map.on("load", function() {
         }
     }
 
+    const closeButton = document.getElementById('closeButton');
+
+    if (closeButton) {
+        closeButton.addEventListener('click', hideGlowingTextBox);
+    }
+
 
     // Function to hide the glowing text box
     function hideGlowingTextBox() {
@@ -574,6 +593,37 @@ map.on("load", function() {
             hideGlowingTextBox();
         }
     });
+
+    const lineCoordinates = [
+        [34.661952, 32.05049],
+        [34.663973, 32.045822],
+        [34.666553, 32.042099],
+        [34.669202, 32.038849],
+        [34.671851, 32.036071],
+        [34.674865, 32.033366],
+        [34.676778, 32.03178],
+        [34.679537, 32.03007],
+        [34.681141, 32.029278],
+        [34.683276, 32.028364],
+        [34.685291, 32.027593],
+        [34.688541, 32.026321],
+        [34.693033, 32.02502],
+        [34.697862, 32.023938],
+        [34.703521, 32.023157],
+        [34.709086, 32.022691],
+        [34.713172, 32.022709],
+        [34.71684, 32.023233],
+        [34.721422, 32.023678],
+        [34.725812, 32.024533],
+        [34.72874, 32.025042],
+        [34.731087, 32.025551],
+        [34.73429, 32.026533],
+        [34.737106, 32.027679],
+        [34.739755, 32.028625]
+        ]
+
+    // Add text labels along the curve as a SymbolLayer
+    
 
 
     // setup the instance, pass callback functions
@@ -612,6 +662,237 @@ map.on("load", function() {
         }
 
         // document.getElementById("exposition").classList.add("exposition-hidden");
+
+        // if (map.getLayer('curved-path-labels')) {
+        //     map.removeLayer('curved-path-labels');
+        //     map.removeSource('curved-path-labels');
+        // }
+        // if (map.getLayer('Palestine-label')) {
+        //     map.removeLayer('curved-path-labels');
+        //     map.removeSource('curved-path-labels');
+        // }
+        // if (map.getLayer('Israeli-label')) {
+        //     map.removeLayer('curved-path-labels');
+        //     map.removeSource('curved-path-labels');
+        // }
+
+        map.addLayer({
+            id: 'curved-path-labels',
+            type: 'symbol',
+            source: {
+                type: 'geojson',
+                data: {
+                    "type": "Feature",
+                    "properties": {
+                    "type": "Circle size ~ boxes exported per acre of groves",
+                    },
+                    "geometry": {
+                        "coordinates": [
+                            [34.661952, 32.05049],
+                            [34.663973, 32.045822],
+                            [34.666553, 32.042099],
+                            [34.669202, 32.038849],
+                            [34.671851, 32.036071],
+                            [34.674865, 32.033366],
+                            [34.676778, 32.03178],
+                            [34.679537, 32.03007],
+                            [34.681141, 32.029278],
+                            [34.683276, 32.028364],
+                            [34.685291, 32.027593],
+                            [34.688541, 32.026321],
+                            [34.693033, 32.02502],
+                            [34.697862, 32.023938],
+                            [34.703521, 32.023157],
+                            [34.709086, 32.022691],
+                            [34.713172, 32.022709],
+                            [34.71684, 32.023233],
+                            [34.721422, 32.023678],
+                            [34.725812, 32.024533],
+                            [34.72874, 32.025042],
+                            [34.731087, 32.025551],
+                            [34.73429, 32.026533],
+                            [34.737106, 32.027679],
+                            [34.739755, 32.028625]
+                        ],
+                        "type": "LineString"
+                    }
+                }
+            },
+            layout: {
+                'symbol-placement': 'line-center',
+                'text-field': ["to-string", ["get", "type"]],
+                'text-anchor': 'bottom', // Adjust text anchor as needed
+                 // Adjust text anchor as needed
+                'text-font': ['Avenir Light'], // Set the font to Avenir Light
+                'text-size': 8, // Set the text size to 11
+                // Other layout properties as needed
+            },
+            paint: {
+                'text-color': '#93794E',
+                // Paint properties for the text label
+            },
+        });
+
+        map.addLayer({
+            id: 'Israel-label',
+            type: 'symbol',
+            source: {
+                type: 'geojson',
+                data: {
+                    "type": "Feature",
+                    "properties": {
+                    "type": "Blue text ~ proportion of Jewish/Israeli-owned groves",
+                    },
+                    "geometry": {
+                        "coordinates": [
+                            [
+                                34.74182961515416,
+                                32.02309494074555
+                            ],
+                            [
+                                34.74281513746253,
+                                32.02436266901426
+                            ],
+                            [
+                                34.74414049504952,
+                                32.02563039728297
+                            ],
+                            [
+                                34.746145523193775,
+                                32.026725227525006
+                            ],
+                            [
+                                34.7483544525042,
+                                32.02735907741466
+                            ],
+                            [
+                                34.752058657041474,
+                                32.02750313252898
+                            ],
+                            [
+                                34.75555896041257,
+                                32.02735907741466
+                            ],
+                            [
+                                34.75851552733762,
+                                32.02686928618273
+                            ],
+                            [
+                                34.76126819309411,
+                                32.02620662761815
+                            ],
+                            [
+                                34.76779303044415,
+                                32.024593173544815
+                            ],
+                            [
+                                34.775813143021026,
+                                32.02228818985732
+                            ],
+                            [
+                                34.78383325559784,
+                                32.02044416115119
+                            ]
+                            ],
+                        "type": "LineString"
+                    }
+                }
+            },
+            layout: {
+                'symbol-placement': 'line-center',
+                'text-field': ["to-string", ["get", "type"]],
+                'text-anchor': 'bottom', // Adjust text anchor as needed
+                 // Adjust text anchor as needed
+                'text-font': ['Avenir Light'], // Set the font to Avenir Light
+                'text-size': 8, // Set the text size to 11
+                // Other layout properties as needed
+            },
+            paint: {
+                'text-color': '#1d4b90',
+                'text-opacity': 0.5,
+                // Paint properties for the text label
+            },
+        });
+
+        map.addLayer({
+            id: 'Palestine-label',
+            type: 'symbol',
+            source: {
+                type: 'geojson',
+                data: {
+                    "type": "Feature",
+                    "properties": {
+                    "type": "Green text ~ proportion of Palestinian-owned groves",
+                    },
+                    "geometry": {
+                        "coordinates": [
+                            [
+                                34.77932787525473,
+                                32.08090579634261
+                            ],
+                            [
+                                34.779509966499575,
+                                32.07839957763734
+                            ],
+                            [
+                                34.77935217823621,
+                                32.075821362024726
+                            ],
+                            [
+                                34.778995069862646,
+                                32.073160980243415
+                            ],
+                            [
+                                34.778395029406525,
+                                32.06987378051306
+                            ],
+                            [
+                                34.77753572861789,
+                                32.067525349601425
+                            ],
+                            [
+                                34.77656032631291,
+                                32.06614525859946
+                            ],
+                            [
+                                34.77516007462195,
+                                32.06498118715867
+                            ],
+                            [
+                                34.77190884406601,
+                                32.06329556687136
+                            ],
+                            [
+                                34.76863132900345,
+                                32.062075556028574
+                            ],
+                            [
+                                34.76509890431043,
+                                32.061107580053374
+                            ],
+                            [
+                                34.76007290431043,
+                                32.060085580053375
+                            ]
+                            ],
+                        "type": "LineString"
+                    }
+                }
+            },
+            layout: {
+                'symbol-placement': 'line-center',
+                'text-field': ["to-string", ["get", "type"]],
+                'text-anchor': 'bottom', // Adjust text anchor as needed
+                 // Adjust text anchor as needed
+                'text-font': ['Avenir Light'], // Set the font to Avenir Light
+                'text-size': 8, // Set the text size to 11
+                // Other layout properties as needed
+            },
+            paint: {
+                'text-color': '#9DA47F',
+                // Paint properties for the text label
+            },
+        });
 
         var circleFillLayer = map.getLayer("circle-fill");
         var circleOutlineLayer = map.getLayer("circle-outline");
@@ -756,6 +1037,7 @@ window.addEventListener('scroll', function() {
 });
 
 const mapElement = document.getElementById('map');
+
 
 
 
