@@ -203,6 +203,35 @@ var config = {
                     //filter:                  
                     opacity: 0, // Start with 0 opacity
                     duration: 0, // Duration of 1 second (in milliseconds) for fade-in
+                },
+                {
+                    layer: 'betterExportLines',
+                    type: 'line',
+                    //filter:                  
+                    opacity: 1,
+                    //duration: 5000,
+                },
+                {
+                    layer: 'points',
+                    type: 'symbol',
+                    opacity:  [
+                        "match",
+                        ["get", "label"],
+                        ["Jaffa Port"],
+                        1,
+                        1
+                      ],
+                },
+                {
+                    layer: 'Place-Labels',
+                    type: 'symbol',
+                    opacity: [
+                        "match",
+                        ["get", "type"],
+                        ["Old Town"],
+                        1,
+                        1,
+                    ]
                 }
             ],
             onChapterExit: []
@@ -224,6 +253,7 @@ var config = {
             rotateAnimation: false,
             callback: '',
             onChapterEnter: [
+                
                 {
                     layer: 'jafffa-orange-groves',
                     type: 'fill',
@@ -248,7 +278,37 @@ var config = {
                     opacity: 1, // Start with 0 opacity
                     duration: 2000, // Duration of 1 second (in milliseconds) for fade-in
                     easing: 'ease-in' // Use the ease timing function for a smoother transition
+                },
+                {
+                    layer: 'betterExportLines',
+                    type: 'line',
+                    //filter:                  
+                    opacity: 0,
+                    //duration: 5000,
+                },
+                {
+                    layer: 'points',
+                    type: 'symbol',
+                    opacity:  [
+                        "match",
+                        ["get", "label"],
+                        ["Jaffa Port"],
+                        0,
+                        1
+                      ],
+                },
+                {
+                    layer: 'Place-Labels',
+                    type: 'symbol',
+                    opacity: [
+                        "match",
+                        ["get", "type"],
+                        ["Old Town"],
+                        0,
+                        1,
+                    ]
                 }
+                
                     //duration: 5000,
             ],
             onChapterExit: []
