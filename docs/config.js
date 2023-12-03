@@ -90,6 +90,7 @@ var config = {
             title: 'Late 19th Century - World War I',
             //image: './path/to/image/source.png',
             description: "In the late 1800s, Jaffa emerged as a thriving hub for orange cultivation led by Palestinian farmers. As a major port and once the largest city in Palestine, Jaffa earned the title ‘Gateway to Palestine’ and became an important trade hub. The city's initial enduring prominence, surpassing that of nearby ports like Haifa and Beirut, stemmed from its strategic regional position and agricultural prosperity. \n\nNotably, Jaffa's growth relied on its belt of citrus gardens that encircled the city and reshaped the landscape. Local farmers invented the Shamouti variety of oranges, ideal for long-distance trade, leading to a quadrupling of Jaffa's orange groves between 1850 and 1880. By the end of the century, oranges had become Jaffa’s most profitable crop, establishing the Jaffa orange as Palestine's primary export. \nA small number of Palestinian farmers, (two-thirds of Arab and one-third Jewish), held vast expanses of Jaffa’s citrus groves, defining the landscape with large, unfragmented orchards prior to WWII.",
+            button: 'Click to show/hide primary source materials',
             location: {
                 center: [34.72776, 32.05656],
                 zoom: 12.3,
@@ -127,6 +128,7 @@ var config = {
             hidden: false,
             title:  'Interwar Period',
             description: "The number of Jewish settlers increased in the interwar period and by 1933, Jewish-owned orange production surpassed Arab-owned production, marking a shift in ownership. Despite mounting political tensions, Arab and Jewish farmers coexisted and collaborated, facilitating the expansion of the industry. \n\nThe interwar period thus became the golden era of the Jaffa orange. The industry experienced unprecedented growth and orange exports skyrocketed from 2 million to 15 million boxes. As the number of farmers increased, the once-unified orange groves became more fragmented. Production expanded into groves farther from Jaffa's center, with fewer groves in the town's proximity. The collaborative, interwar period marked the peak of industry productivity, yet the gradual shift of citrus groves away from Palestinian ownership hinted at the looming losses to come.",
+            button: 'Click to show/hide primary source materials',
             location: {
                 center: [34.72776, 32.05656],
                 zoom: 12.3,

@@ -342,6 +342,38 @@
         .step img {
             width: 100%;
         }
+        .mapboxgl-popup-content {
+            font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+            padding: 0;
+            width: 180px;
+            /* Set the background color and opacity for the popup */
+            background-color: rgba(246, 243, 238, 0.908);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .mapboxgl-popup-content h4 {
+            margin: 0;
+            padding: 10px;
+            font-weight: 400;
+            /* Adjust text color if needed */
+            color: #333;
+        }
+
+        .mapboxgl-popup-content div {
+        padding: 10px;
+        }
+
+        .mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
+        margin-top: 15px;
+        }
+
+        .mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
+            display: none
+        }
+        .mapboxgl-popup-tip {
+            display: none; /* Hide the tip */
+        }
 
         @media (max-width: 750px) {
             .centered, .lefty, .righty, .fully {
@@ -481,6 +513,22 @@ config.chapters.forEach((record, idx) => {
         container.classList.add('hidden');
     }
     features.appendChild(container);
+    
+    if (idx >= 1 && idx !== 4){
+        const chapterButtonDiv = document.createElement('div');
+        const chapterButton = document.createElement('button');
+        chapterButton.innerText = `Show Chapter ${idx} Places`;
+        chapterButton.classList.add('chapter-button');
+
+        chapterButtonDiv.appendChild(chapterButton);
+        container.appendChild(chapterButtonDiv);
+
+        // Add event listener to each chapter button
+        chapterButton.addEventListener('click', () => {
+            displayMarkersForChapter(record.id);
+    });
+    }
+    
 });
 
 story.appendChild(features);
@@ -525,7 +573,151 @@ var map = new mapboxgl.Map({
 // instantiate the scrollama
 var scroller = scrollama();
 
+function displayMarkersForChapter(currentChapter) {
+    const placesData = map.getSource('places')._data;
+
+    // Remove existing popups
+    const popUps = document.getElementsByClassName('mapboxgl-popup');
+    while (popUps[0]) {
+        popUps[0].remove();
+    }
+
+    // Logic to show popups based on the currentChapter
+    if (currentChapter === "slug-style-id") {
+        const firstThreePlaces = placesData.features.filter(place => place.id === 1 || place.id === 2 || place.id === 3);
+        firstThreePlaces.forEach(place => {
+            createPopUp(place);
+        });
+    } else if (currentChapter === "second-identifier") {
+        const lastThreePlaces = placesData.features.filter(place => place.id === 4 || place.id === 5 || place.id === 6);
+        lastThreePlaces.forEach(place => {
+            createPopUp(place);
+        });
+    } else {
+        // Handle other chapters if needed
+    }
+}
+
+// Function to create popup for each feature
+function createPopUp(currentFeature) {
+    const popup = new mapboxgl.Popup({ closeOnClick: true })
+        .setLngLat(currentFeature.geometry.coordinates)
+        .setHTML(`<h4>${currentFeature.properties.description}</h4>`)
+        .addTo(map);
+}
+
 map.on("load", function() {
+    map.addSource('places', {
+        // This GeoJSON contains features that include an "icon"
+        // property. The value of the "icon" property corresponds
+        // to an image in the Mapbox Streets style's sprite.
+        'type': 'geojson',
+        'data': {
+        'type': 'FeatureCollection',
+        'features': [
+        {
+        'type': 'Feature',
+        'id':1,
+        'properties': {
+        'description':
+        '<strong>1918</strong><p>"Test of the first thing!!"</p>',
+        // 'icon': "none",
+        },
+        'geometry': {
+        'type': 'Point',
+        'coordinates': [34.793, 32.034]
+        }
+        },
+        {
+        'type': 'Feature',
+        'id':2,
+        'properties': {
+        'description':
+        '<strong>1918</strong><p>"Test of the second thing!"</p>',
+        // 'icon': "none",
+        },
+        'geometry': {
+        'type': 'Point',
+        'coordinates': [34.680, 32.053]
+        }
+        },
+        {
+        'type': 'Feature',
+        'id':3,
+        'properties': {
+        'description':
+        '<strong>1918</strong><p>"Test of the third thing!!"</p>',
+        // 'icon': "none",
+        },
+        'geometry': {
+        'type': 'Point',
+        'coordinates': [34.758, 32.065]
+        }
+        },
+        {
+        'type': 'Feature',
+        'id':4,
+        'properties': {
+        'description':
+        '<strong>1918</strong><p>"Test of the fourth thing!!"</p>',
+        // 'icon': "none",
+        },
+        'geometry': {
+        'type': 'Point',
+        'coordinates': [34.734, 32.037]
+        }
+        },
+        {
+        'type': 'Feature',
+        'id':5,
+        'properties': {
+        'description':
+        '<strong>1918</strong><p>"Test of the fifth thing!!"</p>',
+        // 'icon': "none",
+        },
+        'geometry': {
+        'type': 'Point',
+        'coordinates': [34.816, 32.075]
+        }
+        },
+        {
+        'type': 'Feature',
+        'id':5,
+        'properties': {
+        'description':
+        '<strong>1918</strong><p>"Test of the sixth thing!"</p>',
+        // 'icon': "none",
+        },
+        'geometry': {
+        'type': 'Point',
+        'coordinates': [34.708, 32.081]
+        }
+        }
+        ]
+        }
+    });
+    // Add a layer showing the places.
+    map.addLayer({
+        'id': 'places',
+        'type': 'symbol',
+        'source': 'places',
+        'layout': {
+        'icon-image': ['get', 'icon'],
+        'icon-size': 1,
+        'icon-allow-overlap': true,
+    }
+    });
+
+        // Change the cursor to a pointer when the mouse is over the places layer.
+    map.on('mouseenter', 'places', () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change it back to a pointer when it leaves.
+    map.on('mouseleave', 'places', () => {
+        map.getCanvas().style.cursor = '';
+    });
+
     const glowingTextBox = document.getElementById('glowingTextBox');
 
     let currentContent = ''; // Variable to store the current text content
@@ -1015,6 +1207,13 @@ map.on("load", function() {
         response.element.classList.add('active');
         map[chapter.mapAnimation || 'flyTo'](chapter.location);
 
+        map.on('click', (event) => {
+            const features = map.queryRenderedFeatures(event.point, { layers: ['places'] });
+            if (!features.length) return;
+            
+            displayMarkersForChapter(chapter);
+        });
+
         // Update the circle radius based on the chapter
 
         if (chapter.onChapterEnter.length > 0) {
@@ -1032,6 +1231,10 @@ map.on("load", function() {
     })
     
     .onStepExit(response => {
+        const popUps = document.getElementsByClassName('mapboxgl-popup');
+        while (popUps[0]) {
+            popUps[0].remove();
+        }
         var chapter = config.chapters.find(chap => chap.id === response.element.id);
         response.element.classList.remove('active');
         if (chapter.onChapterExit.length > 0) {
