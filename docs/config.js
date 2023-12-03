@@ -227,8 +227,8 @@ var config = {
                     type: 'symbol',
                     opacity: [
                         "match",
-                        ["get", "type"],
-                        ["Old Town"],
+                        ["get", "class"],
+                        ["town"],
                         1,
                         1,
                     ]
@@ -302,8 +302,8 @@ var config = {
                     type: 'symbol',
                     opacity: [
                         "match",
-                        ["get", "type"],
-                        ["Old Town"],
+                        ["get", "class"],
+                        ["town"],
                         0,
                         1,
                     ]
