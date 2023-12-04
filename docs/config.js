@@ -89,7 +89,7 @@ var config = {
             hidden: false,
             title: 'Late 19th Century - World War I',
             //image: './path/to/image/source.png',
-            description: "In the late 1800s, Jaffa thrived as a prominent hub for orange cultivation, led by Palestinian farmers. Jaffa’s surrounding belt of citrus groves propelled its growth, rendering the city the “Gateway to Palestine.” The invention of the Jaffa variety fueled a fourfold increase in Jaffa's groves by 1880, and the orange became Palestine’s primary export. Prior to World War I, Jaffa’s citrus groves were large and unfragmented.<br><br><i>Grove area in 1918: 6,191 acres<br>Oranges exported in 1918: 1.5 million boxes</i>",
+            description: "In the late 1800s, Jaffa thrived as a prominent hub for orange cultivation, <span style='color: #9da47f'>led by Palestinian farmers.</span> Jaffa’s surrounding belt of citrus groves propelled its growth, rendering the city the “Gateway to Palestine.” The invention of the Jaffa variety fueled a fourfold increase in Jaffa's groves by 1880, and <span style='color: #D3A67F'>the orange became Palestine’s primary export.</span> Prior to World War I, Jaffa’s citrus groves were large and unfragmented.<br><br><span style='color: #9da47f; font-weight: bold'>Grove area in 1918: 6,191 acres</span><br><span style='color:#A0835F; font-weight: bold; opacity: 0.7'>Oranges exported in 1918: 1.5 million boxes</span>",
             button: 'Click to show/hide primary source materials',
             location: {
                 center: [34.72776, 32.05656],
@@ -127,7 +127,7 @@ var config = {
             alignment: 'left',
             hidden: false,
             title:  'Interwar Period',
-            description: "During the interwar period, a surge in Jewish migration to Jaffa led to a shift in orange grove ownership, with the Jewish-owned groves surpassing Arab-owned groves by 1933. Despite increasing political tensions, Arab and Jewish farmers collaborated, fueling industry growth. This era marked the golden age for the Jaffa orange, but the industry's expansion led to fragmented groves, moving production away from Jaffa's core and signaling a shift away from Palestinian ownership.<br><br><i>Grove area in 1943: 6,648 acres<br>Oranges exported in 1943: 15.3 million boxes</i>",
+            description: "During the interwar period, <span style='color: #1D4A8F; opacity:0.5'>surge in Jewish migration to Jaffa</span> led to a shift in orange grove ownership, with <span style='color: #1D4A8F; opacity: 0.5'>the Jewish-owned groves</span> surpassing <span style='color: #9da47f'>Arab-owned groves</span> by 1933. Despite increasing political tensions, Arab and Jewish farmers collaborated, fueling industry growth. This era marked the golden age for the Jaffa orange, but the industry's expansion led to fragmented groves, moving production away from Jaffa's core and signaling a shift away from Palestinian ownership.<br><br><span style='color: #9da47f; font-weight: bold'>Grove area in 1943: 6,648 acres</span><br><span style='color:#A0835F; font-weight: bold; opacity: 0.7'>Oranges exported in 1943: 15.3 million boxes</span>",
             button: 'Click to show/hide primary source materials',
             location: {
                 center: [34.72776, 32.05656],
@@ -171,7 +171,7 @@ var config = {
             hidden: false,
             title: 'World War II and the Nakba',
             //image: './path/to/image/source.png',
-            description: "Following Israel’s establishment and the Nakba of 1948, militias expelled most of Jaffa’s Arab-Palestinian residents, leaving only 4,000 to 5,000 of the original 70,000. Israel assumed control of groves abandoned by fleeing Palestinians and rebranded the Jaffa orange as a nationalist emblem of homeland prosperity. Tel Aviv's expansion further distanced citrus groves from Jaffa, and exports never matched the collaborative interwar period, and the once-thriving industry began to decline. <br><br><i>Grove area in 1958: 2,156 acres<br>Oranges exported in 1958: 1.4 million boxes</i>",
+            description: "Following Israel’s establishment and the Nakba of 1948, militias expelled most of Jaffa’s Arab-Palestinian residents, leaving only 4,000 to 5,000 of the original 70,000. <span style='color: #1D4A8F; opacity:0.5'>Israel assumed control of groves abandoned by fleeing Palestinians</span> and rebranded the Jaffa orange as a nationalist emblem of homeland prosperity. Tel Aviv's expansion further distanced citrus groves from Jaffa, and exports never matched the collaborative interwar period, and the once-thriving industry began to decline. <br><br><span style='color: #9da47f; font-weight: bold'>Grove area in 1958: 2,156 acres</span><br><span style='color:#A0835F; font-weight: bold; opacity: 0.7'>Oranges exported in 1958: 1.4 million boxes</span>",
             location: {
                 center: [34.72776, 32.05656],
                 zoom: 12.3,
