@@ -589,7 +589,7 @@ function displayMarkersForChapter(currentChapter) {
             createPopUp(place);
         });
     } else if (currentChapter === "second-identifier") {
-        const lastThreePlaces = placesData.features.filter(place => place.id === 7 || place.id === 8|| place.id === 9|| place.id === 10|| place.id === 11|| place.id === 12);
+        const lastThreePlaces = placesData.features.filter(place => place.id === 7 || place.id === 8|| place.id === 9|| place.id === 10|| place.id === 11|| place.id === 12|| place.id === 19|| place.id === 20);
         lastThreePlaces.forEach(place => {
             createPopUp(place);
         });
@@ -626,12 +626,12 @@ map.on("load", function() {
         'id':1,
         'properties': {
         'description':
-        '<p>Test of the first thing!!</p>',
+        '<p>Ismail Abou Shahadeh, Palestinian orchard mechanic</p><iframe src="https://youtube.com/embed/mo6ENwASPFE" frameborder="0" style="width: 100%; max-width: 200px;"></iframe>,'
         // 'icon': "none",
         },
         'geometry': {
         'type': 'Point',
-        'coordinates': [34.793, 32.034]
+        'coordinates': [34.783, 32.034]
         }
         },
         {
@@ -639,7 +639,7 @@ map.on("load", function() {
         'id':2,
         'properties': {
         'description':
-        '<p>Test of the second thing!</p>',
+        '<p>Family orange packing workshop, 1907</p><img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/familyPacking1907.jpg" alt="Image Description" style="width: 100%; max-width: 200px;">',
         // 'icon': "none",
         },
         'geometry': {
@@ -652,7 +652,7 @@ map.on("load", function() {
         'id':3,
         'properties': {
         'description':
-        '<p>Test of the third thing!!</p>',
+        '<p>Jaffa from the groves</p><iframe src="https://youtube.com/embed/z8J0aKvwGDs" frameborder="0" style="width: 100%; max-width: 200px;"></iframe>,'
         // 'icon': "none",
         },
         'geometry': {
@@ -678,7 +678,7 @@ map.on("load", function() {
         'id':5,
         'properties': {
         'description':
-        '<p>Test of the fifth thing!!</p>',
+        '<p>Early Dutch export comapany in Yaffa</p><img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/earlyExports.jpg" alt="Image Description" style="width: 100%; max-width: 200px;">',
         // 'icon': "none",
         },
         'geometry': {
@@ -691,39 +691,45 @@ map.on("load", function() {
         'id':6,
         'properties': {
         'description':
-        '<p>Orange exports in the late 19th century</p><img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/jaffaBoats.jpg" alt="Image Description" style="width: 100%; max-width: 200px;">',
+        '<p>Orange export boats in the late 19th century</p><img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/jaffaBoats.jpg" alt="Image Description" style="width: 100%; max-width: 200px;">',
         // 'icon': "none",
         },
         'geometry': {
         'type': 'Point',
-        'coordinates': [34.708, 32.081]
+        'coordinates': [34.708, 32.065]
         }
         },
+
+
+
 
         {
         'type': 'Feature',
         'id':7,
         'properties': {
         'description':
-        '<p>Test of the first thing!!</p>',
+        '<p>Jaffa orange advertisement c. 1930s</p><img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/30sAdd.jpg" alt="Image Description" style="width: 100%; max-width: 200px;">',
         // 'icon': "none",
         },
         'geometry': {
         'type': 'Point',
-        'coordinates': [34.793, 32.034]
+        'coordinates': [34.783, 32.034]
         }
         },
         {
         'type': 'Feature',
-        'id':8,
+        'id': 8,
         'properties': {
-        'description':
-        '<p>Test of the second thing!</p>',
-        // 'icon': "none",
+            'description': `
+                <p>1928 lithographs</p>
+                <img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/aPerfectBite.jpg" alt="Image Description" style="width: 100%; max-width: 200px;">
+                <img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/LordOfOranges.jpg" alt="Another Image" style="width: 100%; max-width: 200px;">
+            `,
+            // 'icon': "none",
         },
         'geometry': {
-        'type': 'Point',
-        'coordinates': [34.680, 32.053]
+            'type': 'Point',
+            'coordinates': [34.680, 32.053]
         }
         },
         {
@@ -731,7 +737,7 @@ map.on("load", function() {
         'id':9,
         'properties': {
         'description':
-        '<p>"est of the third thing!!</p>',
+        '<p>Jaffa orange fields before the Nakba</p><img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/1948PreNakbaGroves.jpg" alt="Image Description" style="width: 100%; max-width: 200px;">',
         // 'icon': "none",
         },
         'geometry': {
@@ -757,12 +763,12 @@ map.on("load", function() {
         'id':11,
         'properties': {
         'description':
-        '<p>Test of the fifth thing!!</p>',
+        '<p>1927 award from the Palestine Zionist Comission</p><img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/Prize1927.jpg" alt="Image Description" style="width: 100%; max-width: 200px;">',
         // 'icon': "none",
         },
         'geometry': {
         'type': 'Point',
-        'coordinates': [34.816, 32.075]
+        'coordinates': [34.826, 32.075]
         }
         },
         {
@@ -775,9 +781,36 @@ map.on("load", function() {
         },
         'geometry': {
         'type': 'Point',
-        'coordinates': [34.708, 32.081]
+        'coordinates': [34.708, 32.1]
         }
         },
+        {
+        'type': 'Feature',
+        'id':19,
+        'properties': {
+        'description':
+        '<p>Television report on coexistance in the industry</p><iframe src="https://youtube.com/embed/vSwCPbxHRYE" frameborder="0" style="width: 100%; max-width: 200px;"></iframe>,'
+        // 'icon': "none",
+        },
+        'geometry': {
+        'type': 'Point',
+        'coordinates': [34.76, 32.030]
+        }
+        },
+        {
+        'type': 'Feature',
+        'id':20,
+        'properties': {
+        'description':
+        '<p>Advertisement, circa 1930</p><img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/realCollabCirca1930.jpg" alt="Image Description" style="width: 100%; max-width: 200px;">',
+        // 'icon': "none",
+        },
+        'geometry': {
+        'type': 'Point',
+        'coordinates': [34.670, 32.023]
+        }
+        },
+        
 
 
 
@@ -786,7 +819,7 @@ map.on("load", function() {
         'id':13,
         'properties': {
         'description':
-        '<p>Test of the first thing!!</p>',
+        '<p>Israeli advertisement</p><iframe src="https://youtube.com/embed/CY3uly23LPU" frameborder="0" style="width: 100%; max-width: 200px;"></iframe>,'
         // 'icon': "none",
         },
         'geometry': {
@@ -799,7 +832,7 @@ map.on("load", function() {
         'id':14,
         'properties': {
         'description':
-        '<p>Test of the second thing!</p>',
+        '<p>Ilan Gur: <i>“We were made to believe that the future of Israeli agriculture lays in our hands. One bad orange will not just spoil the whole crate, but imperil our reputation as the best orange growers in the world.”</i></p>',
         // 'icon': "none",
         },
         'geometry': {
@@ -812,7 +845,7 @@ map.on("load", function() {
         'id':15,
         'properties': {
         'description':
-        '<p>Test of the third thing!!</p>',
+        '<p>Citrus is the splendor of our country and its wealth</p><img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/splendor.jpg" alt="Image Description" style="width: 100%; max-width: 200px;">',
         // 'icon': "none",
         },
         'geometry': {
@@ -825,7 +858,7 @@ map.on("load", function() {
         'id':16,
         'properties': {
         'description':
-        '<p>Jaffa orange fields before the Nakba</p><img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/1948PreNakbaGroves.jpg" alt="Image Description" style="width: 100%; max-width: 200px;">',
+        '<p>Israeli citrus exhibition</p><img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/IsrealExhibition.jpg" alt="Image Description" style="width: 100%; max-width: 200px;">',
         // 'icon': "none",
         },
         'geometry': {
@@ -838,7 +871,7 @@ map.on("load", function() {
         'id':17,
         'properties': {
         'description':
-        '<p>Test of the fifth thing!!</p>',
+        '<p>Israeli flight attendance dressed in Orange</p><img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/flightAttend.jpg" alt="Image Description"style="width: 100%; max-width: 200px;">',
         // 'icon': "none",
         },
         'geometry': {
@@ -851,7 +884,7 @@ map.on("load", function() {
         'id':18,
         'properties': {
         'description':
-        '<p>Orange exports in the late 19th century</p><img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/jaffaBoats.jpg" alt="Image Description" style="width: 100%; max-width: 200px;">',
+        '<p>Israeli stamp, 1958</p><img src="/Users/madeleinegallop/Documents/fall2023/Cartography/jaffa-oranges/docs/images/orangeStamp.jpg" alt="Image Description" style="width: 100%; max-width: 200px;">',
         // 'icon': "none",
         },
         'geometry': {
