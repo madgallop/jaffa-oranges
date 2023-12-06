@@ -169,7 +169,7 @@ var config = {
             id: 'third-identifier',
             alignment: 'left',
             hidden: false,
-            title: 'World War II and the Nakba',
+            title: 'After World War II and the 1948 Nakba',
             //image: './path/to/image/source.png',
             description: "Following Israel’s establishment and the Nakba of 1948, militias expelled most of Jaffa’s Arab-Palestinian residents, leaving only 4,000 to 5,000 of the original 70,000. <span style='color: #1D4A8F; opacity:0.5'>Israel assumed control of groves abandoned by fleeing Palestinians</span> and rebranded the Jaffa orange as a nationalist emblem of homeland prosperity. Tel Aviv's expansion further distanced citrus groves from Jaffa, and exports never matched the collaborative interwar period, and the once-thriving industry began to decline. <br><br><span style='color: #9da47f; font-weight: bold'>Grove area in 1958: 2,156 acres</span><br><span style='color:#A0835F; font-weight: bold; opacity: 0.7'>Oranges exported in 1958: 1.4 million boxes</span>",
             location: {

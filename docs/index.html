@@ -64,7 +64,7 @@
             color: rgb(119, 118, 118);
             position: absolute;
             top: 0;
-            left: 20.5%;
+            left: 29%;
             padding: 2vh 1vw; /* Adjust the padding as needed */
             font-size: 28px; /* Adjust the font size as needed */
             text-align: center;
@@ -222,7 +222,7 @@
         
         #scale-bar {
             position: fixed;
-            bottom: 0;            
+            bottom: 20px;            
             margin: 3px 140px;
             background: rgba(255, 255, 255, 0);
             border: 2px solid #EFBF8F;
@@ -699,7 +699,7 @@ map.on("load", function() {
         'id':6,
         'properties': {
         'description':
-        '<p>Orange export boats in the late 19th century</p><img src="https://github.com/madgallop/jaffa-oranges/blob/main/docs/images/jaffaBoats.jpg?raw=true" alt="Image Description" style="width: 100%; max-width: 300px;">',
+        '<p>Orange export boats in the late 19th century</p><img src="https://github.com/madgallop/jaffa-oranges/blob/main/docs/images/jaffaBoats.jpg?raw=true" alt="Image Description" style="width: 100%; max-width: 300px; cursor: pointer;" fullscreen>',
         // 'icon': "none",
         },
         'geometry': {
@@ -1127,7 +1127,7 @@ map.on("load", function() {
                     // "Avenir Light",
                     "Arial Unicode MS Regular"
                 ], // Set the font to Avenir Light
-                'text-size': 8, // Set the text size to 11
+                'text-size': 11, // Set the text size to 11
                 // Other layout properties as needed
             },
             paint: {
@@ -1146,7 +1146,7 @@ map.on("load", function() {
                 data: {
                     "type": "Feature",
                     "properties": {
-                    "type": "Blue text ~ proportion of Jewish/Israeli-owned groves",
+                    "type": "Blue ~ proportion of Jewish/Israeli-owned groves",
                     },
                     "geometry": {
                         "coordinates": [
@@ -1222,7 +1222,8 @@ map.on("load", function() {
             },
         });
 
-        map.addLayer({
+        if (current_chapter!="third-chapter"){
+            map.addLayer({
             id: 'Palestine-label',
             type: 'symbol',
             source: {
@@ -1230,7 +1231,7 @@ map.on("load", function() {
                 data: {
                     "type": "Feature",
                     "properties": {
-                    "type": "Green text ~ proportion of Palestinian-owned groves",
+                    "type": "Green ~ proportion of Palestinian-owned groves",
                     },
                     "geometry": {
                         "coordinates": [
@@ -1321,6 +1322,8 @@ map.on("load", function() {
                 // Paint properties for the text label
             },
         });
+        }
+        
 
         var circleFillLayer = map.getLayer("circle-fill");
         var circleOutlineLayer = map.getLayer("circle-outline");
