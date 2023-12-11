@@ -5,8 +5,6 @@ This project is an interactive map-driven narrative exploring Jaffa’s history 
 Built using Mapbox Studio and Mapbox GL JS.
 
 Future changes will include: 
-1. Comparison of all three years of grove extents and city footprints
-2. Bug fix for the dashed circle outlines
-3. Further customization of the text labels
-4. Variation in dashed circle outlines to differentiate the different eras
-5. Add more options for the user to explore videos, photos, and quotes by type 
+1. Bug fix for the dashed circle outlines
+2. Variation in dashed circle outlines to differentiate the different eras
+3. Add more options for the user to explore videos, photos, and quotes by type 
