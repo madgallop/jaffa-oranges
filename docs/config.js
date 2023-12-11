@@ -13,7 +13,7 @@ var config = {
     title: 'THE PERFECT BITE',
     subtitle: "Growth and demise of the orange groves of Jaffa",
     byline: 'Madeleine Gallop',
-    // footer: 'Source: source citations, etc. <br> Created using <a href="https://github.com/mapbox/storytelling" target="_blank">Mapbox Storytelling</a> template.',
+    footer: '<a href="https://github.com/madgallop/jaffa-oranges/blob/main/Sources.md" target="_blank">References</a>.',
     chapters: [
         {
             id: 'inset-intro',
