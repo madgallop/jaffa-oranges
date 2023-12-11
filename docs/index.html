@@ -352,7 +352,9 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             text-align: left; /* Align text to the left */
             font-family: 'Avenir', sans-serif; /* Use Avenir font */
-            font-size: 12px; /* Set font size to 13 */
+            font-size: 12px; /* Set font size to 13 */            
+            z-index: 99999;
+
         }
 
         .mapboxgl-popup-content h4 {
@@ -361,21 +363,30 @@
             font-weight: 400;
             /* Adjust text color if needed */
             color: #333;
+            z-index: 99999;
+
         }
 
         .mapboxgl-popup-content div {
         padding: 10px;
+        z-index: 99999;
+
         }
 
         .mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
         margin-top: 15px;
+        z-index: 99999;
+
         }
 
         .mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
-            display: none
+            display: none;
+            z-index: 99999;
+
         }
         .mapboxgl-popup-tip {
             display: none; /* Hide the tip */
+            z-index: 99999;
         }
 
         @media (max-width: 750px) {
@@ -647,7 +658,7 @@ map.on("load", function() {
         'id':2,
         'properties': {
         'description':
-        '<p>Family orange packing workshop, 1907</p><img src="https://github.com/madgallop/jaffa-oranges/blob/main/docs/images/familyPacking1907.jpg?raw=true" alt="Image Description" style="width: 100%; max-width: 300px;">',
+        '<p>Family orange packing workshop, 1907</p><img src="https://github.com/madgallop/jaffa-oranges/blob/main/docs/images/familyPacking1907.jpg?raw=true" alt="Image Description" style="width: 100%; max-width: 800px;">',
         // 'icon': "none",
         },
         'geometry': {
