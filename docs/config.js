@@ -207,6 +207,16 @@ var config = {
                     duration: 0, // Duration of 1 second (in milliseconds) for fade-in
                 },
                 {
+                    layer: 'Place_Labels',
+                    opacity: [
+                      "match",
+                      ["get", "year"],
+                      [0, 1943],
+                      0,
+                      1
+                  ]
+                },
+                {
                     layer: 'betterExportLines',
                     type: 'line',
                     //filter:                  
@@ -274,6 +284,17 @@ var config = {
                     //duration: 5000,
                 },
                 {
+                    layer: 'Place_Labels',
+                    opacity: [
+                      "match",
+                      ["get", "year"],
+                      [0, 1943],
+                      1,
+                      0
+                  ]
+                },
+                
+                {
                     layer: 'jaffa_building_footprints',
                     type: 'fill',
                     //filter:                  
@@ -291,25 +312,25 @@ var config = {
                 {
                     layer: 'points',
                     type: 'symbol',
-                    opacity:  [
+                    opacity: [
                         "match",
                         ["get", "label"],
                         ["Jaffa Port"],
                         0,
                         1
-                      ],
+                      ]
                 },
-                {
-                    layer: 'Place-Labels',
-                    type: 'symbol',
-                    opacity: [
-                        "match",
-                        ["get", "class"],
-                        ["town"],
-                        0,
-                        1,
-                    ]
-                }
+                // {
+                //     layer: 'Place-Labels',
+                //     type: 'symbol',
+                //     opacity: [
+                //         "match",
+                //         ["get", "class"],
+                //         ["town"],
+                //         0,
+                //         1,
+                //     ]
+                // }
                 
                     //duration: 5000,
             ],

@@ -1370,6 +1370,12 @@ map.on("load", function() {
             },
         });
         }
+        else{
+            if (map.getLayer('Palestine-label')) {
+                map.removeLayer('Palestine-label');
+                // map.removeSource('Palestine-label');
+            }
+        }
         
 
         var circleFillLayer = map.getLayer("circle-fill");
