@@ -528,7 +528,7 @@ config.chapters.forEach((record, idx) => {
     }
     features.appendChild(container);
     
-    if (idx >= 1 && idx !== 4){
+    if (idx >= 1 && idx !== 4&& idx !== 5){
         const chapterButtonDiv = document.createElement('div');
         const chapterButton = document.createElement('button');
         chapterButton.innerText = `Click here to see historic photos/videos`;
@@ -1061,7 +1061,7 @@ map.on("load", function() {
     })
     
     .onStepEnter(async response => {
-        var chapterRadii = [0, 1.8, 4.5, 2.625, 0]
+        var chapterRadii = [0, 1.8, 4.5, 2.625, 0,0]
         var center = turf.point([34.71250, 32.0686]);
         var options = {
         steps: 80,

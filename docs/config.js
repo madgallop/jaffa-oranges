@@ -231,7 +231,7 @@ var config = {
                         ["get", "label"],
                         ["Jaffa Port"],
                         1,
-                        1
+                        0
                       ],
                 },
                 {
@@ -318,6 +318,88 @@ var config = {
                         ["Jaffa Port"],
                         0,
                         1
+                      ]
+                },
+                // {
+                //     layer: 'Place-Labels',
+                //     type: 'symbol',
+                //     opacity: [
+                //         "match",
+                //         ["get", "class"],
+                //         ["town"],
+                //         0,
+                //         1,
+                //     ]
+                // }
+                
+                    //duration: 5000,
+            ],
+            onChapterExit: []
+        },
+        {
+            id: 'fifth-chapter',
+            alignment: 'left',
+            hidden: false,
+            title: 'Combined historic grove extent from 1918-1980s compared with city sprawl',
+            //image: './path/to/image/source.png',
+            // description: "In 1965, Jaffa’s historic port closed permanently, and Israel reconstructed Jaffa as a 'traditional' enclave of Tel Aviv. By the 1980s, Israel's citrus industry plummeted. Rising real estate costs prompted farmers to sell their groves, while urbanization replaced agriculture. Simultaneously, the Jaffa orange faced intense competition and restrictive trade limitations. Israeli urbanization ultimately erased Jaffa’s symbolic orange groves, leaving behind only their memory.",
+            location: {
+                center: [34.72776, 32.05656],
+                zoom: 12.3,
+                pitch: 0,
+                bearing: 0
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [
+                
+                {
+                    layer: 'jafffa-orange-groves',
+                    type: 'fill',
+                    //filter:                  
+                    opacity: [
+                        "match",
+                        ["get", "year"],
+                        ["1918"],
+                        1,
+                        ["1943"],
+                        1,
+                        ["1958"],
+                        1,
+                        1,
+                    ],
+                    duration: 2000, // Duration of 1 second (in milliseconds) for fade-in
+                    easing: 'ease-in' // Use the ease timing function for a smoother transition
+                },
+                {
+                    layer: 'Place_Labels',
+                    opacity: [
+                      "match",
+                      ["get", "year"],
+                      [0, 1943],
+                      1,
+                      1
+                  ]
+                },
+                
+                {
+                    layer: 'jaffa_building_footprints',
+                    type: 'fill',
+                    //filter:                  
+                    opacity: 0.05, // Start with 0 opacity
+                    duration: 4000, // Duration of 1 second (in milliseconds) for fade-in
+                    easing: 'ease-out' // Use the ease timing function for a smoother transition
+                },
+                {
+                    layer: 'points',
+                    type: 'symbol',
+                    opacity: [
+                        "match",
+                        ["get", "label"],
+                        ["Jaffa Port"],
+                        1,
+                        0
                       ]
                 },
                 // {
