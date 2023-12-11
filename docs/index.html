@@ -345,7 +345,7 @@
         .mapboxgl-popup-content {
             font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
             padding: 0;
-            width: 180px;
+            width: 200px;
             /* Set the background color and opacity for the popup */
             background-color: rgba(246, 243, 238, 0.908);
             border-radius: 5px;
@@ -410,7 +410,7 @@
 <div id="exposition" class="exposition-hidden">
     <div class="title-text">
         <h1 class="h1-text"><span style='color: #9da47f; font-weight: bold'>THE PERFECT BITE</span><br><span style='font-size: 18px;'>Collaboration and Dispossession in Jaffa, Palestine</span></h1>
-        <p class="p1-text">The Jaffa orange is an iconic and contested symbol of identity. From its Palestinian origins in the late 19th to the flourishing and cooperative interwar period, the Jaffa orange industry thrived. But the narrative shifted after the Nakba of 1948 as Israeli reappropriation of the symbol and land fragmented Jaffa’s once-unified citrus groves. For Palestinians, the Jaffa orange transitioned from a symbol of unity to one of dispossession. The closure of Jaffa’s historic port and sprawling Israeli development ultimately erased all traces of Jaffa’s agricultural heritage.        </p>
+        <p class="p1-text">The Jaffa orange is an iconic and contested symbol of identity. From its Palestinian origins in the late 19th century to the flourishing and cooperative interwar period, the Jaffa orange industry thrived. But the narrative shifted after the Nakba of 1948 as Israeli reappropriation of the symbol and land fragmented Jaffa’s once-unified citrus groves. For Palestinians, the Jaffa orange transitioned from a symbol of unity to one of dispossession. The closure of Jaffa’s historic port and sprawling Israeli development ultimately erased all traces of Jaffa’s agricultural heritage.        </p>
         <p class="p3-text">Scroll to view the story or click one of the defining periods on the timeline below.</p>
     </div>
 </div>
@@ -531,22 +531,40 @@ config.chapters.forEach((record, idx) => {
     if (idx >= 1 && idx !== 4){
         const chapterButtonDiv = document.createElement('div');
         const chapterButton = document.createElement('button');
-        chapterButton.innerText = `Click to see historic photos/videos`;
+        chapterButton.innerText = `Click here to see historic photos/videos`;
         chapterButton.classList.add('chapter-button');
         chapterButton.style.fontFamily = 'Avenir, sans-serif'; // Setting the font family to Avenir
 
         chapterButton.style.font = '400 12px/22px "Avenir", "Helvetica Neue", sans-serif';
         chapterButton.style.padding = '3px';
-        chapterButton.style.outline = 'none';
+        chapterButton.style.outline = 'block';
 
         chapterButtonDiv.appendChild(chapterButton);
         container.appendChild(chapterButtonDiv);
 
-        // Add event listener to each chapter button
+        clickCount=0
+
         chapterButton.addEventListener('click', () => {
-            displayMarkersForChapter(record.id);
+
+            if (clickCount % 2 !== 0) {
+                console.log(clickCount)
+                // If the click count is even (second click), hide the content
+                // Assuming 'container' is the parent element of the content to be hidden
+                const popUps = document.getElementsByClassName('mapboxgl-popup');
+                    while (popUps[0]) {
+                        popUps[0].remove();
+                    }
+            } else {
+                console.log(clickCount)
+
+                // If the click count is odd (first click), display the content
+                displayMarkersForChapter(record.id);
+            }
+            clickCount+=1; // Increment click count on each click
+
     });
-    }
+}
+
     
 });
 
@@ -631,7 +649,21 @@ function createPopUp(currentFeature) {
         .addTo(map);
 }
 
+// Function to hide/show the scale bar based on the chapter
+function toggleScaleBarVisibility(currentChapter) {
+    const scaleBar = document.getElementById('scale-bar');
+
+    // Assuming the first chapter is represented by the value "slug-style-id"
+    if (currentChapter === 'inset-intro') {
+        scaleBar.style.display = 'none'; // Hide the scale bar for the first chapter
+    } else {
+        scaleBar.style.display = 'block'; // Show the scale bar for other chapters
+    }
+}
+
+
 map.on("load", function() {
+    
     map.addSource('places', {
         // This GeoJSON contains features that include an "icon"
         // property. The value of the "icon" property corresponds
@@ -658,7 +690,7 @@ map.on("load", function() {
         'id':2,
         'properties': {
         'description':
-        '<p>Family orange packing workshop, 1907</p><img src="https://github.com/madgallop/jaffa-oranges/blob/main/docs/images/familyPacking1907.jpg?raw=true" alt="Image Description" style="width: 100%; max-width: 800px;">',
+        '<p>Family orange packing workshop, 1907</p><img src="https://github.com/madgallop/jaffa-oranges/blob/main/docs/images/familyPacking1907.jpg?raw=true" alt="Image Description" style="width: 100%; max-width: 9000px;">',
         // 'icon': "none",
         },
         'geometry': {
@@ -1042,6 +1074,10 @@ map.on("load", function() {
         // console.log(response.element.id)
         var chapter = config.chapters[current_chapter];
         var newRadius = chapterRadii[current_chapter];
+
+        console.log(chapter.id, "CHAPTER")
+        toggleScaleBarVisibility(chapter.id);
+
 
         document.querySelectorAll('.timeline-marker').forEach(marker => {
             marker.classList.remove('active-timeline-marker');
